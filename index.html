@@ -1,191 +1,561 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saral Protein Atta+</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saral Protein Atta+ — Investor Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF6ED;
+    --cream-deep:#F1E9D8;
+    --wheat-line:#E3D7BC;
+    --brown:#3D2B1F;
+    --brown-soft:#6B5947;
+    --sage:#5B7A4F;
+    --sage-pale:#E7EEE1;
+    --amber:#C97B3D;
+    --amber-pale:#F6E3CD;
+    --forest:#1F3D2E;
+    --forest-deep:#15291E;
+    --white:#FFFFFF;
+    --shadow: 0 1px 2px rgba(61,43,31,0.06), 0 8px 24px rgba(61,43,31,0.06);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--cream);
+    color:var(--brown);
+    overflow-x:hidden;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--sage);
+    font-weight:500;
+  }
+  .eyebrow.on-dark{color:#9FC08C;}
+  .eyebrow.amber{color:var(--amber);}
+  h1,h2,h3{font-family:'Fraunces',serif; font-weight:600; line-height:1.05; letter-spacing:-0.01em;}
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
 
-    <link rel="stylesheet" href="style.css">
+  /* ===== NAV ===== */
+  nav{
+    position:sticky; top:0; z-index:100;
+    background:rgba(250,246,237,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--wheat-line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:72px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:700; font-size:20px;}
+  .logo .mark{width:30px;height:30px;border-radius:50%; background:conic-gradient(from 220deg, var(--amber), #DDA85F 35%, var(--amber) 70%); position:relative; flex-shrink:0;}
+  .logo .mark::after{content:"";position:absolute; inset:5px; border-radius:50%; background:var(--cream); }
+  .navlinks{display:flex; gap:32px; align-items:center;}
+  .navlinks a{font-size:14px; font-weight:500; color:var(--brown-soft); transition:color .2s;}
+  .navlinks a:hover{color:var(--forest);}
+  .nav-cta{
+    background:var(--forest); color:var(--cream)!important; padding:10px 20px;
+    border-radius:100px; font-size:13.5px; font-weight:600;
+    box-shadow:var(--shadow);
+  }
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    padding:88px 0 0;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:40px; align-items:center;
+    padding-bottom:64px;
+  }
+  .hero-eyebrow{display:flex; align-items:center; gap:10px; margin-bottom:22px;}
+  .hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);}
+  h1.headline{
+    font-size:clamp(40px, 5.4vw, 68px);
+    color:var(--forest);
+    margin-bottom:22px;
+  }
+  h1.headline em{
+    font-style:italic; color:var(--amber); font-weight:500;
+  }
+  .hero-sub{
+    font-size:17px; line-height:1.65; color:var(--brown-soft); max-width:460px; margin-bottom:32px;
+  }
+  .hero-actions{display:flex; gap:14px; align-items:center; margin-bottom:48px;}
+  .btn-primary{
+    background:var(--forest); color:var(--cream); padding:14px 26px; border-radius:100px;
+    font-size:14.5px; font-weight:600; box-shadow:var(--shadow); display:inline-flex; align-items:center; gap:8px;
+    transition:transform .2s;
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{
+    color:var(--forest); padding:14px 22px; font-size:14.5px; font-weight:600;
+    border:1.5px solid var(--brown); border-color:#D9CBAE; border-radius:100px;
+    transition:border-color .2s, background .2s;
+  }
+  .btn-ghost:hover{background:var(--cream-deep);}
+  .hero-trust{display:flex; gap:28px; flex-wrap:wrap;}
+  .trust-stat{}
+  .trust-stat .num{font-family:'Fraunces',serif; font-size:26px; font-weight:600; color:var(--forest);}
+  .trust-stat .lbl{font-size:12px; color:var(--brown-soft); margin-top:2px;}
+
+  /* hero visual: the roti */
+  .roti-stage{
+    position:relative; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
+  }
+  .roti{
+    position:relative; width:88%; aspect-ratio:1/1; border-radius:50%;
+    background:
+      radial-gradient(circle at 30% 28%, rgba(255,255,255,0.5), transparent 40%),
+      repeating-radial-gradient(circle at 50% 50%, #E8C087 0px, #DDAE6E 18px, #D49E58 19px, #DDAE6E 37px);
+    box-shadow: 0 24px 60px rgba(61,43,31,0.22), inset 0 0 0 1px rgba(61,43,31,0.06);
+  }
+  .roti::before{
+    content:""; position:absolute; inset:0; border-radius:50%;
+    background-image: radial-gradient(circle, rgba(120,70,30,0.18) 1.5px, transparent 1.6px);
+    background-size: 16px 16px;
+    mix-blend-mode:multiply;
+  }
+  .roti-ring{
+    position:absolute; inset:-18px; border-radius:50%;
+    border:2px dashed #C9B98D;
+    animation: spin 60s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .protein-tag{
+    position:absolute; top:8%; right:-4%;
+    background:var(--forest); color:var(--cream);
+    padding:10px 16px; border-radius:14px;
+    font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:500;
+    box-shadow:var(--shadow);
+    display:flex; flex-direction:column; gap:2px; line-height:1.3;
+  }
+  .protein-tag .big{font-family:'Fraunces',serif; font-size:20px; color:#A9D18F; font-weight:600;}
+  .badge-float{
+    position:absolute; bottom:6%; left:-6%;
+    background:var(--white); padding:10px 14px; border-radius:14px;
+    box-shadow:var(--shadow); font-size:12.5px; font-weight:600; color:var(--brown);
+    display:flex; align-items:center; gap:8px;
+  }
+  .badge-float .swatch{width:8px;height:8px;border-radius:50%;background:var(--sage);}
+
+  .strip{
+    border-top:1px solid var(--wheat-line); border-bottom:1px solid var(--wheat-line);
+    background:var(--cream-deep);
+    padding:22px 0;
+  }
+  .strip .wrap{display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap;}
+  .strip-item{font-size:13px; color:var(--brown-soft); font-weight:500; display:flex; gap:8px; align-items:center;}
+  .strip-item b{color:var(--forest); font-weight:700;}
+
+  /* ===== SECTION GENERIC ===== */
+  section{padding:96px 0;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head .eyebrow{margin-bottom:14px; display:block;}
+  .section-head h2{font-size:clamp(30px,3.6vw,44px); color:var(--forest);}
+  .section-head p{font-size:16px; color:var(--brown-soft); margin-top:16px; line-height:1.6;}
+
+  /* ===== MOTHER STORY / PROBLEM ===== */
+  .problem{background:var(--forest); color:var(--cream);}
+  .problem .section-head h2{color:var(--cream);}
+  .problem .section-head p{color:#CBD9C6;}
+  .quote-block{
+    border-left:3px solid var(--amber);
+    padding-left:28px; margin-bottom:56px; max-width:760px;
+  }
+  .quote-block p{font-family:'Fraunces',serif; font-size:clamp(22px,2.6vw,30px); font-style:italic; line-height:1.4; color:var(--cream);}
+  .quote-block span{display:block; margin-top:14px; font-family:'Inter'; font-style:normal; font-size:13px; color:#9FC08C; font-weight:600;}
+
+  .gap-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,0.12); border-radius:18px; overflow:hidden;}
+  .gap-card{background:var(--forest-deep); padding:30px 26px;}
+  .gap-card .ringnum{
+    width:62px; height:62px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    border:2px solid rgba(255,255,255,0.18); margin-bottom:18px; position:relative;
+  }
+  .gap-card .ringnum svg{position:absolute; inset:-2px;}
+  .gap-card .ringnum span{font-family:'Fraunces',serif; font-weight:600; font-size:16px; color:var(--cream);}
+  .gap-card h4{font-size:14px; color:var(--cream); font-weight:600; margin-bottom:8px; font-family:'Inter';}
+  .gap-card p{font-size:13.5px; color:#A9BBA3; line-height:1.55;}
+
+  /* ===== PRODUCT ===== */
+  .product .wrap{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;}
+  .product-visual{position:relative;}
+  .pack-card{
+    background:linear-gradient(160deg,#F4E6CE,#E8D2A8);
+    border-radius:24px; padding:36px 30px; box-shadow:var(--shadow);
+    position:relative; overflow:hidden;
+  }
+  .pack-card::before{
+    content:""; position:absolute; top:-40px; right:-40px; width:160px; height:160px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,0.4), transparent 70%);
+  }
+  .pack-card .pname{font-family:'Fraunces',serif; font-size:30px; font-weight:700; color:var(--forest);}
+  .pack-card .ptag{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber); margin-bottom:6px; display:block;}
+  .pack-card .pdesc{font-size:13.5px; color:var(--brown-soft); margin-top:10px; max-width:240px;}
+  .pack-stats{display:flex; gap:18px; margin-top:28px;}
+  .pack-stats div{background:rgba(255,255,255,0.55); padding:12px 14px; border-radius:12px; flex:1;}
+  .pack-stats .v{font-family:'Fraunces',serif; font-weight:600; font-size:19px; color:var(--forest);}
+  .pack-stats .k{font-size:10.5px; color:var(--brown-soft); text-transform:uppercase; letter-spacing:0.04em; margin-top:2px;}
+
+  .feature-list{margin-top:28px; display:flex; flex-direction:column; gap:16px;}
+  .feature-list .f{display:flex; gap:14px; align-items:flex-start;}
+  .feature-list .f .ic{width:34px;height:34px;border-radius:50%;background:var(--sage-pale); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:var(--sage); font-weight:700; font-size:14px;}
+  .feature-list .f div p{font-size:13.5px; color:var(--brown-soft); margin-top:2px;}
+  .feature-list .f div b{font-size:14.5px; color:var(--brown); font-weight:600;}
+
+  .pos-card{
+    background:var(--white); border:1px solid var(--wheat-line); border-radius:20px; padding:36px;
+    box-shadow:var(--shadow);
+  }
+  .pos-card .eyebrow{margin-bottom:14px; display:block;}
+  .pos-card p.statement{font-family:'Fraunces',serif; font-style:italic; font-size:21px; line-height:1.5; color:var(--forest); margin-bottom:28px;}
+  .stp-row{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px;}
+  .stp-card{background:var(--cream-deep); border-radius:14px; padding:18px 18px;}
+  .stp-card .stp-label{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--amber); margin-bottom:8px; display:block;}
+  .stp-card p{font-size:13px; line-height:1.5; color:var(--brown-soft);}
+  .stp-card b{color:var(--brown); font-weight:600;}
+
+  /* ===== MARKET ===== */
+  .market{background:var(--cream-deep);}
+  .tam-row{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:48px;}
+  .tam-card{background:var(--white); border-radius:20px; padding:30px 28px; border:1px solid var(--wheat-line); position:relative; overflow:hidden;}
+  .tam-card.som{background:var(--forest); border-color:var(--forest);}
+  .tam-card.som *{color:var(--cream)!important;}
+  .tam-card.som .tam-sub{color:#A9C99B!important;}
+  .tam-card .tam-label{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--sage); margin-bottom:14px; display:block;}
+  .tam-card .tam-val{font-family:'Fraunces',serif; font-size:42px; font-weight:700; color:var(--forest); line-height:1;}
+  .tam-card .tam-sub{font-size:13px; color:var(--brown-soft); margin-top:10px; line-height:1.55;}
+  .tam-card .tam-name{font-size:14px; font-weight:700; margin-top:2px; margin-bottom:4px;}
+
+  .market-split{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:start;}
+  .roadmap-card{background:var(--white); border:1px solid var(--wheat-line); border-radius:20px; padding:32px;}
+  .roadmap-card h3{font-size:20px; color:var(--forest); margin-bottom:24px; font-weight:600;}
+  .bars{display:flex; align-items:flex-end; gap:14px; height:200px; margin-bottom:8px;}
+  .bar-col{flex:1; display:flex; flex-direction:column; align-items:center; gap:10px; height:100%; justify-content:flex-end;}
+  .bar-col .bar{width:100%; border-radius:8px 8px 0 0; background:linear-gradient(180deg,#C97B3D,#9C5A26); position:relative;}
+  .bar-col .bar.final{background:linear-gradient(180deg,#1F3D2E,#15291E);}
+  .bar-col .bar span{position:absolute; top:-26px; left:50%; transform:translateX(-50%); font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; color:var(--brown); white-space:nowrap;}
+  .bar-col .yr{font-size:11.5px; color:var(--brown-soft); font-weight:600;}
+
+  .comp-card{background:var(--white); border:1px solid var(--wheat-line); border-radius:20px; padding:32px;}
+  .comp-card h3{font-size:20px; color:var(--forest); margin-bottom:6px; font-weight:600;}
+  .comp-card .sub{font-size:13px; color:var(--brown-soft); margin-bottom:24px;}
+  .why-row{display:flex; flex-direction:column; gap:0;}
+  .why-row .wr{display:flex; justify-content:space-between; align-items:center; padding:13px 0; border-bottom:1px solid var(--wheat-line);}
+  .why-row .wr:last-child{border-bottom:none;}
+  .why-row .wr .label{font-size:13.5px; color:var(--brown); font-weight:600;}
+  .dotrow{display:flex; gap:4px;}
+  .dotrow span{width:9px; height:9px; border-radius:50%; background:var(--wheat-line);}
+  .dotrow span.fill{background:var(--sage);}
+
+  /* ===== TIMELINE / GTM ===== */
+  .gtm .wrap > .section-head{margin-bottom:48px;}
+  .phase-row{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:64px;}
+  .phase-card{border-radius:20px; padding:30px 26px; position:relative; border:1px solid var(--wheat-line); background:var(--white);}
+  .phase-card .pnum{font-family:'Fraunces',serif; font-size:13px; color:var(--amber); font-weight:700; letter-spacing:0.06em; margin-bottom:14px; display:block;}
+  .phase-card h4{font-size:19px; color:var(--forest); font-weight:600; margin-bottom:6px;}
+  .phase-card .when{font-size:12.5px; color:var(--brown-soft); margin-bottom:16px; font-family:'JetBrains Mono',monospace;}
+  .phase-card p{font-size:13.5px; color:var(--brown-soft); line-height:1.55;}
+
+  .journey{display:flex; gap:0; align-items:stretch; border-radius:20px; overflow:hidden; border:1px solid var(--wheat-line);}
+  .journey .jstep{flex:1; background:var(--white); padding:28px 22px; position:relative;}
+  .journey .jstep:not(:last-child)::after{
+    content:"→"; position:absolute; right:-13px; top:50%; transform:translateY(-50%);
+    color:var(--amber); font-size:18px; z-index:2; background:var(--cream); width:26px; height:26px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; border:1px solid var(--wheat-line);
+  }
+  .journey .jstep .jn{font-family:'Fraunces',serif; font-size:13px; color:var(--sage); font-weight:700; margin-bottom:10px; display:block;}
+  .journey .jstep h5{font-size:14.5px; font-weight:600; color:var(--brown); margin-bottom:6px;}
+  .journey .jstep p{font-size:12.5px; color:var(--brown-soft); line-height:1.5;}
+
+  /* ===== ASK / CTA ===== */
+  .ask{background:var(--forest); color:var(--cream); border-radius:28px; margin:0 32px 96px; padding:64px 56px; position:relative; overflow:hidden;}
+  .ask::before{
+    content:""; position:absolute; width:480px; height:480px; border-radius:50%;
+    background:radial-gradient(circle, rgba(201,123,61,0.25), transparent 70%);
+    top:-160px; right:-120px;
+  }
+  .ask-inner{position:relative; z-index:2; display:grid; grid-template-columns:1.2fr 0.8fr; gap:48px; align-items:center;}
+  .ask h2{font-size:clamp(28px,3.4vw,40px); color:var(--cream); margin-bottom:18px;}
+  .ask p{font-size:15.5px; color:#C8D8C2; max-width:480px; line-height:1.6; margin-bottom:0;}
+  .ask-right{display:flex; flex-direction:column; gap:16px; align-items:flex-start;}
+  .ask-figure{font-family:'Fraunces',serif; font-size:48px; font-weight:700; color:var(--amber-pale); line-height:1;}
+  .ask-figure span{display:block; font-family:'Inter'; font-size:12.5px; color:#A9C99B; font-weight:600; margin-top:6px; letter-spacing:0.03em; text-transform:uppercase;}
+  .btn-on-dark{background:var(--amber); color:var(--forest-deep); padding:15px 28px; border-radius:100px; font-weight:700; font-size:14.5px; box-shadow:0 8px 24px rgba(0,0,0,0.25);}
+
+  /* ===== FOOTER ===== */
+  footer{border-top:1px solid var(--wheat-line); padding:48px 0 36px;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:18px;}
+  footer .fmeta{font-size:12.5px; color:var(--brown-soft);}
+  footer .flinks{display:flex; gap:24px; font-size:12.5px; color:var(--brown-soft); font-weight:500;}
+
+  @media (max-width: 880px){
+    .hero .wrap{grid-template-columns:1fr; padding-bottom:40px;}
+    .roti-stage{order:-1; max-width:340px; margin:0 auto 24px;}
+    .gap-grid{grid-template-columns:repeat(2,1fr);}
+    .product .wrap{grid-template-columns:1fr; gap:40px;}
+    .stp-row{grid-template-columns:1fr;}
+    .tam-row{grid-template-columns:1fr;}
+    .market-split{grid-template-columns:1fr; gap:32px;}
+    .phase-row{grid-template-columns:1fr;}
+    .journey{flex-direction:column;}
+    .journey .jstep:not(:last-child)::after{content:"↓"; right:50%; top:auto; bottom:-13px; transform:translateX(50%);}
+    .ask-inner{grid-template-columns:1fr;}
+    .ask{margin:0 16px 64px; padding:40px 28px;}
+    .navlinks{display:none;}
+    section{padding:64px 0;}
+  }
+</style>
 </head>
 <body>
 
-<header>
-    <nav>
-        <div class="logo">Saral Protein Atta+</div>
+<nav>
+  <div class="wrap">
+    <div class="logo"><span class="mark"></span>Saral</div>
+    <div class="navlinks">
+      <a href="#problem">The Gap</a>
+      <a href="#product">Product</a>
+      <a href="#market">Market</a>
+      <a href="#gtm">Go-to-Market</a>
+      <a href="#ask">The Ask</a>
+    </div>
+    <a href="#ask" class="nav-cta">View the Ask</a>
+  </div>
+</nav>
 
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#benefits">Benefits</a></li>
-            <li><a href="#market">Market</a></li>
-            <li><a href="#roadmap">Roadmap</a></li>
-        </ul>
-    </nav>
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="hero-eyebrow"><span class="dot"></span><span class="eyebrow amber">Saral Protein Atta+ — Seed Round</span></div>
+      <h1 class="headline">Protein for the family,<br>baked into the <em>roti</em> they already trust.</h1>
+      <p class="hero-sub">Six in ten urban Indians are protein deficient and don't know it. We're not selling another powder — we're adding 16% more protein to the staple a mother already serves every single day.</p>
+      <div class="hero-actions">
+        <a href="#ask" class="btn-primary">See the ₹1,000 Cr roadmap →</a>
+        <a href="#product" class="btn-ghost">Meet the product</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-stat"><div class="num">₹50,000 Cr</div><div class="lbl">Total addressable market</div></div>
+        <div class="trust-stat"><div class="num">+16%</div><div class="lbl">Protein vs. regular atta</div></div>
+        <div class="trust-stat"><div class="num">75%</div><div class="lbl">Urban consumers underaware</div></div>
+      </div>
+    </div>
+    <div class="roti-stage">
+      <div class="roti-ring"></div>
+      <div class="roti"></div>
+      <div class="protein-tag">PROTEIN<br><span class="big">+16%</span>per roti</div>
+      <div class="badge-float"><span class="swatch"></span>Made for families</div>
+    </div>
+  </div>
+  <div class="strip">
+    <div class="wrap">
+      <div class="strip-item"><b>₹85/kg</b> suggested MRP</div>
+      <div class="strip-item"><b>1kg · 5kg · 10kg</b> family formats</div>
+      <div class="strip-item"><b>15% CAGR</b> packaged atta market</div>
+      <div class="strip-item"><b>~1.1 Mn</b> households to ₹1,000 Cr</div>
+    </div>
+  </div>
 </header>
 
-<section class="hero">
-
-    <div class="hero-content">
-
-        <h1>Every Roti Packed With Protein</h1>
-
-        <p>
-            India's Smart Nutrition Revolution Through
-            High Protein Multigrain Atta.
-        </p>
-
-        <div class="buttons">
-            <a href="#about" class="btn-primary">Explore Product</a>
-            <a href="#market" class="btn-secondary">Market Opportunity</a>
-        </div>
-
+<section class="problem" id="problem">
+  <div class="wrap">
+    <div class="quote-block">
+      <p>"I don't need a protein shake. I need to know the rotis I'm already making are doing enough for my kids."</p>
+      <span>— THE MOTHER WE BUILT THIS FOR</span>
     </div>
-
+    <div class="section-head">
+      <span class="eyebrow on-dark">Why the gap exists</span>
+      <h2>India isn't under-fed. It's under-protein'd — and no one's told the cook.</h2>
+      <p>The ICMR-NIN recommends ~0.83g of protein per kg of body weight. Most Indian households fall short — not from scarcity, but because protein-rich food is seen as expensive, bland, or someone else's problem.</p>
+    </div>
+    <div class="gap-grid">
+      <div class="gap-card">
+        <div class="ringnum"><span>36%</span></div>
+        <h4>Rural deficient</h4>
+        <p>More than a third of rural India falls short of the recommended daily protein intake.</p>
+      </div>
+      <div class="gap-card">
+        <div class="ringnum"><span>44%</span></div>
+        <h4>Urban deficient</h4>
+        <p>Urban households fare worse — convenience food has crowded out protein-dense everyday meals.</p>
+      </div>
+      <div class="gap-card">
+        <div class="ringnum"><span>6/10</span></div>
+        <h4>Quietly inadequate</h4>
+        <p>Six in ten urban consumers show signs of protein inadequacy without ever being diagnosed.</p>
+      </div>
+      <div class="gap-card">
+        <div class="ringnum"><span>75%</span></div>
+        <h4>Don't know their need</h4>
+        <p>Three in four urban consumers have no idea how much protein their family actually requires.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="stats">
-
-    <div class="stat-card">
-        <h2 class="counter" data-target="73">0</h2>
-        <p>Protein Deficient Indians</p>
+<section class="product" id="product">
+  <div class="wrap">
+    <div>
+      <div class="pack-card">
+        <span class="ptag">High-Protein Family Atta</span>
+        <div class="pname">Saral Protein Atta+</div>
+        <p class="pdesc">100% atta, rich in protein, made for families — not gym shelves.</p>
+        <div class="pack-stats">
+          <div><div class="v">+16%</div><div class="k">Protein</div></div>
+          <div><div class="v">₹85/kg</div><div class="k">MRP</div></div>
+          <div><div class="v">3</div><div class="k">Pack sizes</div></div>
+        </div>
+      </div>
+      <div class="feature-list">
+        <div class="f"><div class="ic">✓</div><div><b>Everyday staple, not a supplement</b><p>No new habit to build — just more nutrition in the one food every Indian family already eats daily.</p></div></div>
+        <div class="f"><div class="ic">✓</div><div><b>Built on trust, not hype</b><p>The Saral name carries household trust that a new protein brand would spend years earning.</p></div></div>
+        <div class="f"><div class="ic">✓</div><div><b>Priced for repeat, not for trial</b><p>At ₹85/kg, it sits in everyday-affordable territory — not premium-aisle protein pricing.</p></div></div>
+      </div>
     </div>
-
-    <div class="stat-card">
-        <h2 class="counter" data-target="90">0</h2>
-        <p>Unaware of Protein Needs</p>
+    <div>
+      <div class="section-head" style="margin-bottom:28px;">
+        <span class="eyebrow">Positioning</span>
+        <h2 style="font-size:32px;">One product, one promise: more protein, same roti.</h2>
+      </div>
+      <div class="pos-card">
+        <span class="eyebrow amber">Brand statement</span>
+        <p class="statement">"For modern homemakers with modern concerns, Saral Protein Atta+ adds more protein to the family's daily rotis — without changing the familiar meal."</p>
+        <div class="stp-row">
+          <div class="stp-card">
+            <span class="stp-label">Segmentation</span>
+            <p><b>SEC A/B/C households</b>, 18–60, health-conscious and value-seeking.</p>
+          </div>
+          <div class="stp-card">
+            <span class="stp-label">Primary Target</span>
+            <p><b>Health-conscious mothers</b> aged 25–45, the household's nutrition decision-maker.</p>
+          </div>
+          <div class="stp-card">
+            <span class="stp-label">Secondary Target</span>
+            <p><b>Working professionals</b> (22–45) and <b>senior citizens</b> (55+).</p>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="stat-card">
-        <h2 class="counter" data-target="60">0</h2>
-        <p>Consume Insufficient Protein</p>
-    </div>
-
+  </div>
 </section>
 
-<section id="about" class="section">
-
-    <h2>India's Protein Gap</h2>
-
-    <p>
-        Protein deficiency is one of India's biggest hidden nutritional challenges.
-        Saral Protein Atta+ transforms daily rotis into a convenient source of
-        high-quality protein for families.
-    </p>
-
+<section class="market" id="market">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Sizing the opportunity</span>
+      <h2>A ₹50,000 Cr category, with a clear ₹750 Cr foothold.</h2>
+      <p>The packaged atta market is shifting away from loose, unbranded flour — and protein is becoming the reason families choose to switch.</p>
+    </div>
+    <div class="tam-row">
+      <div class="tam-card">
+        <span class="tam-label">TAM</span>
+        <div class="tam-name">Total Addressable Market</div>
+        <div class="tam-val">₹50,000 Cr</div>
+        <div class="tam-sub">~24 MMT of packaged atta sold nationally at an average MRP of ₹85/kg.</div>
+      </div>
+      <div class="tam-card">
+        <span class="tam-label">SAM</span>
+        <div class="tam-name">Serviceable Addressable Market</div>
+        <div class="tam-val">₹7,500 Cr</div>
+        <div class="tam-sub">The high-protein atta segment specifically — roughly 12 MMT of volume.</div>
+      </div>
+      <div class="tam-card som">
+        <span class="tam-label">SOM</span>
+        <div class="tam-name">Serviceable Obtainable Market</div>
+        <div class="tam-val">₹750 Cr</div>
+        <div class="tam-sub">A realistic ~10% share of the high-protein atta segment by Year 5.</div>
+      </div>
+    </div>
+    <div class="market-split">
+      <div class="roadmap-card">
+        <h3>Roadmap to ₹1,000 Cr</h3>
+        <div class="bars">
+          <div class="bar-col"><div class="bar" style="height:14%;"><span>₹120 Cr</span></div><div class="yr">Y1</div></div>
+          <div class="bar-col"><div class="bar" style="height:24%;"><span>₹220 Cr</span></div><div class="yr">Y2</div></div>
+          <div class="bar-col"><div class="bar" style="height:42%;"><span>₹360 Cr</span></div><div class="yr">Y3</div></div>
+          <div class="bar-col"><div class="bar" style="height:65%;"><span>₹550 Cr</span></div><div class="yr">Y4</div></div>
+          <div class="bar-col"><div class="bar final" style="height:100%;"><span>₹1,000 Cr</span></div><div class="yr">Y5</div></div>
+        </div>
+        <p style="font-size:12.5px; color:var(--brown-soft); margin-top:8px;">15% CAGR delivers ₹1,000 Cr by Year 5, on roughly 1.1 million active households.</p>
+      </div>
+      <div class="comp-card">
+        <h3>Why atta wins the protein race</h3>
+        <p class="sub">Compared against dairy, protein snacks, and other protein sources.</p>
+        <div class="why-row">
+          <div class="wr"><span class="label">Reach</span><div class="dotrow"><span class="fill"></span><span class="fill"></span><span class="fill"></span><span class="fill"></span><span class="fill"></span></div></div>
+          <div class="wr"><span class="label">Affordability</span><div class="dotrow"><span class="fill"></span><span class="fill"></span><span class="fill"></span><span class="fill"></span><span class="fill"></span></div></div>
+          <div class="wr"><span class="label">Trust / Familiarity</span><div class="dotrow"><span class="fill"></span><span class="fill"></span><span class="fill"></span><span class="fill"></span><span class="fill"></span></div></div>
+          <div class="wr"><span class="label">Daily habit fit</span><div class="dotrow"><span class="fill"></span><span class="fill"></span><span class="fill"></span><span class="fill"></span><span class="fill"></span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="benefits" class="section light">
-
-    <h2>Why Saral Protein Atta+</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>High Protein</h3>
-            <p>Supports strength and daily nutrition.</p>
-        </div>
-
-        <div class="card">
-            <h3>Multigrain Blend</h3>
-            <p>Enhanced nutrition beyond regular atta.</p>
-        </div>
-
-        <div class="card">
-            <h3>Family Health</h3>
-            <p>Designed for children, adults and seniors.</p>
-        </div>
-
-        <div class="card">
-            <h3>Affordable Wellness</h3>
-            <p>Nutrition integrated into daily meals.</p>
-        </div>
-
+<section class="gtm" id="gtm">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Go-to-market</span>
+      <h2>Educate, sample, distribute deeply — then earn the pantry repeat.</h2>
+      <p>A South-first launch lets us prove the model in the region most primed for protein adoption, before scaling general trade nationally.</p>
     </div>
-
+    <div class="phase-row">
+      <div class="phase-card">
+        <span class="pnum">PHASE 01</span>
+        <h4>South-first launch</h4>
+        <div class="when">Months 0–6</div>
+        <p>Karnataka, Tamil Nadu, Telangana, Andhra Pradesh — the region already leading protein adoption.</p>
+      </div>
+      <div class="phase-card">
+        <span class="pnum">PHASE 02</span>
+        <h4>Tier 2/3 expansion</h4>
+        <div class="when">Months 6–18</div>
+        <p>Rural general trade penetration, anchored by kirana visibility and on-ground awareness drives.</p>
+      </div>
+      <div class="phase-card">
+        <span class="pnum">PHASE 03</span>
+        <h4>National scale</h4>
+        <div class="when">Months 18–36</div>
+        <p>Repeat-led growth nationally, powered by family-pack adoption and distribution expansion.</p>
+      </div>
+    </div>
+    <div class="journey">
+      <div class="jstep"><span class="jn">01</span><h5>Trial pack</h5><p>Easy to try, low barrier to entry into the home.</p></div>
+      <div class="jstep"><span class="jn">02</span><h5>First family use</h5><p>The household notices the taste, feels the benefit.</p></div>
+      <div class="jstep"><span class="jn">03</span><h5>Repeat purchase</h5><p>Trust grows, the product becomes part of routine.</p></div>
+      <div class="jstep"><span class="jn">04</span><h5>Loyal family habit</h5><p>The healthy choice, for every meal, without a second thought.</p></div>
+    </div>
+  </div>
 </section>
 
-<section id="market" class="section">
-
-    <h2>Market Opportunity</h2>
-
-    <div class="market">
-
-        <div class="market-box">
-            <h3>TAM</h3>
-            <span>₹45,000 Cr</span>
-            <p>Indian Atta Market</p>
-        </div>
-
-        <div class="market-box">
-            <h3>SAM</h3>
-            <span>₹7,500 Cr</span>
-            <p>Health Atta Segment</p>
-        </div>
-
-        <div class="market-box">
-            <h3>SOM</h3>
-            <span>₹750 Cr</span>
-            <p>Target Opportunity</p>
-        </div>
-
+<section id="ask" style="padding-top:0;">
+  <div class="ask">
+    <div class="ask-inner">
+      <div>
+        <span class="eyebrow on-dark" style="margin-bottom:14px; display:block;">The ask</span>
+        <h2>Back a single, scalable, protein-forward platform.</h2>
+        <p>Saral Protein Atta+ balances scale, affordability, and trust in one everyday habit. We're raising to fund the South-first launch, build out general trade distribution, and reach 1.1 million active households by Year 5.</p>
+      </div>
+      <div class="ask-right">
+        <div class="ask-figure">₹1,000 Cr<span>Year 5 revenue target</span></div>
+        <a href="#" class="btn-on-dark">Request the full deck →</a>
+      </div>
     </div>
-
-</section>
-
-<section class="section light">
-
-    <h2>Target Customers</h2>
-
-    <div class="personas">
-
-        <div class="persona">
-            👩‍👧 Mother
-        </div>
-
-        <div class="persona">
-            💼 Working Professional
-        </div>
-
-        <div class="persona">
-            👴 Senior Citizen
-        </div>
-
-        <div class="persona">
-            🧒 Growing Child
-        </div>
-
-    </div>
-
-</section>
-
-<section id="roadmap" class="section">
-
-    <h2>Implementation Roadmap</h2>
-
-    <div class="timeline">
-
-        <div class="phase">Product Development</div>
-        <div class="phase">Packaging</div>
-        <div class="phase">Launch</div>
-        <div class="phase">Distribution</div>
-        <div class="phase">National Expansion</div>
-
-    </div>
-
+  </div>
 </section>
 
 <footer>
-
-    <h2>Saral Protein Atta+</h2>
-
-    <p>
-        Building India's Protein Future One Roti At A Time
-    </p>
-
+  <div class="wrap">
+    <div class="fmeta">Saral Protein Atta+ — Investor Brief · Prepared by Team 45, XIMB BM Batch 2026–28</div>
+    <div class="flinks"><a href="#problem">The Gap</a><a href="#product">Product</a><a href="#market">Market</a><a href="#gtm">Go-to-Market</a></div>
+  </div>
 </footer>
-
-<script src="script.js"></script>
 
 </body>
 </html>
