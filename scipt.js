@@ -1,24 +1,54 @@
-document.getElementById("learnBtn").addEventListener("click", () => {
+const counters = document.querySelectorAll(".counter");
 
-    document.getElementById("protein-gap")
-    .scrollIntoView({
-        behavior: "smooth"
-    });
+counters.forEach(counter => {
+
+const updateCounter = () => {
+
+const target = +counter.getAttribute("data-target");
+
+const count = +counter.innerText;
+
+const increment = target / 100;
+
+if(count < target){
+
+counter.innerText = Math.ceil(count + increment);
+
+setTimeout(updateCounter,20);
+
+}
+else{
+
+counter.innerText = target + "%";
+
+}
+
+};
+
+updateCounter();
 
 });
 
 
-const cards = document.querySelectorAll(".card");
+// Scroll Animation
 
-cards.forEach(card => {
+const observer = new IntersectionObserver(entries => {
 
-    card.addEventListener("mouseenter", () => {
-        card.style.transform = "scale(1.05)";
-        card.style.transition = "0.3s";
-    });
+entries.forEach(entry => {
 
-    card.addEventListener("mouseleave", () => {
-        card.style.transform = "scale(1)";
-    });
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+});
+
+document.querySelectorAll(".card,.market-box,.persona,.phase")
+.forEach(el => {
+
+observer.observe(el);
 
 });
