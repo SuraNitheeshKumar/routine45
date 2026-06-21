@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saral Protein Atta+</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <h2>Saral Protein Atta+</h2>
+        <ul>
+            <li><a href="#protein-gap">Protein Gap</a></li>
+            <li><a href="#product">Product</a></li>
+            <li><a href="#market">Market</a></li>
+            <li><a href="#implementation">Implementation</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>The Winning Protein Platform</h1>
+        <p>
+            Addressing India's Protein Deficiency Through Everyday Nutrition
+        </p>
+        <button id="learnBtn">Learn More</button>
+    </div>
+</section>
+
+<section id="protein-gap" class="section">
+    <h2>Understanding India's Protein Gap</h2>
+
+    <div class="cards">
+        <div class="card">
+            <h3>73%</h3>
+            <p>Indians are Protein Deficient</p>
+        </div>
+
+        <div class="card">
+            <h3>90%</h3>
+            <p>Unaware of Daily Protein Needs</p>
+        </div>
+
+        <div class="card">
+            <h3>60%</h3>
+            <p>Population Consumes Insufficient Protein</p>
+        </div>
+    </div>
+</section>
+
+<section id="product" class="section light">
+    <h2>About Saral Protein Atta+</h2>
+
+    <div class="product-container">
+        <div>
+            <h3>High Protein Daily Nutrition</h3>
+
+            <ul>
+                <li>Protein Enriched Formula</li>
+                <li>Multigrain Goodness</li>
+                <li>Family Friendly Nutrition</li>
+                <li>Affordable & Accessible</li>
+                <li>Supports Healthy Lifestyle</li>
+            </ul>
+        </div>
+
+        <img src="images/atta-pack.png" alt="Saral Protein Atta">
+    </div>
+</section>
+
+<section id="market" class="section">
+    <h2>Market Opportunity</h2>
+
+    <div class="market-grid">
+
+        <div class="market-box">
+            <h3>TAM</h3>
+            <p>₹45,000 Cr</p>
+        </div>
+
+        <div class="market-box">
+            <h3>SAM</h3>
+            <p>₹7,500 Cr</p>
+        </div>
+
+        <div class="market-box">
+            <h3>SOM</h3>
+            <p>₹750 Cr</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="implementation" class="section light">
+
+    <h2>Implementation Roadmap</h2>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+            <span>Phase 1</span>
+            <h4>Product Development</h4>
+        </div>
+
+        <div class="timeline-item">
+            <span>Phase 2</span>
+            <h4>Packaging & Branding</h4>
+        </div>
+
+        <div class="timeline-item">
+            <span>Phase 3</span>
+            <h4>Market Launch</h4>
+        </div>
+
+        <div class="timeline-item">
+            <span>Phase 4</span>
+            <h4>Expansion</h4>
+        </div>
+
+    </div>
+</section>
+
+<section class="team">
+    <h2>Team 45</h2>
+
+    <div class="team-grid">
+
+        <div class="member">Nitheesh Kumar</div>
+        <div class="member">Shrey Gupta</div>
+        <div class="member">Sanjay Soni</div>
+        <div class="member">Shubham Das</div>
+        <div class="member">Shivam Gaur</div>
+        <div class="member">Subhashini Nayak</div>
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Saral Protein Atta+ | XIMB BM Batch 2026-28</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

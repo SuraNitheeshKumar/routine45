@@ -1,0 +1,178 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f8faf7;
+    color:#222;
+}
+
+header{
+    background:#0c2d5a;
+    color:white;
+    padding:15px 50px;
+    position:sticky;
+    top:0;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+}
+
+.hero{
+    height:90vh;
+    background:linear-gradient(rgba(0,0,0,.5),
+    rgba(0,0,0,.5)),
+    url("images/hero.jpg");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.hero h1{
+    font-size:4rem;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:1.2rem;
+    margin-bottom:25px;
+}
+
+button{
+    background:#2f8f2f;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.section{
+    padding:80px 10%;
+}
+
+.section h2{
+    text-align:center;
+    margin-bottom:40px;
+    color:#0c2d5a;
+}
+
+.cards{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    width:250px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card h3{
+    color:#2f8f2f;
+    font-size:2rem;
+}
+
+.light{
+    background:#eef6ed;
+}
+
+.product-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:50px;
+}
+
+.product-container img{
+    width:350px;
+}
+
+.market-grid{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+}
+
+.market-box{
+    background:white;
+    padding:40px;
+    width:220px;
+    text-align:center;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.market-box h3{
+    color:#2f8f2f;
+}
+
+.timeline{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.timeline-item{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    width:220px;
+    text-align:center;
+}
+
+.team{
+    padding:80px 10%;
+}
+
+.team h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.team-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.member{
+    background:#0c2d5a;
+    color:white;
+    text-align:center;
+    padding:20px;
+    border-radius:8px;
+}
+
+footer{
+    background:#0c2d5a;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
