@@ -275,6 +275,60 @@
   .journey .jstep h5{font-size:14.5px; font-weight:600; color:var(--brown); margin-bottom:6px;}
   .journey .jstep p{font-size:12.5px; color:var(--brown-soft); line-height:1.5;}
 
+  /* ===== VIDEO ===== */
+  .video-section{background:var(--cream-deep);}
+  .video-split{display:grid; grid-template-columns:0.85fr 1.15fr; gap:48px; align-items:center;}
+  .video-frame{
+    position:relative; border-radius:20px; overflow:hidden; box-shadow:var(--shadow);
+    border:6px solid var(--white); background:var(--brown);
+    aspect-ratio:16/9;
+  }
+  .video-frame iframe{width:100%; height:100%; display:block; border:0;}
+  .video-caption{display:flex; align-items:center; gap:10px; margin-top:14px;}
+  .video-caption .swatch{width:8px;height:8px;border-radius:50%;background:var(--amber); flex-shrink:0;}
+  .video-caption span{font-size:12.5px; color:var(--brown-soft);}
+  .video-points{display:flex; flex-direction:column; gap:18px; margin-top:28px;}
+  .video-points .vp{display:flex; gap:14px; align-items:flex-start;}
+  .video-points .vp .ic{width:34px;height:34px;border-radius:50%;background:var(--amber-pale); flex-shrink:0; display:flex; align-items:center; justify-content:center; color:var(--amber); font-weight:700; font-size:14px;}
+  .video-points .vp div p{font-size:13.5px; color:var(--brown-soft); margin-top:2px; line-height:1.55;}
+  .video-points .vp div b{font-size:14.5px; color:var(--brown); font-weight:600;}
+
+  /* ===== GRANNY RECIPES ===== */
+  .granny{position:relative;}
+  .granny-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:48px; flex-wrap:wrap;}
+  .granny-intro{font-family:'Fraunces',serif; font-style:italic; font-size:16px; color:var(--brown-soft); max-width:360px; line-height:1.55;}
+  .recipe-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .recipe-card{
+    background:#FFFDF7;
+    border:1px solid var(--wheat-line);
+    border-radius:4px;
+    padding:28px 26px 26px;
+    position:relative;
+    box-shadow:var(--shadow);
+    transform:rotate(var(--tilt,0deg));
+  }
+  .recipe-card:nth-child(1){--tilt:-1deg;}
+  .recipe-card:nth-child(2){--tilt:0.6deg;}
+  .recipe-card:nth-child(3){--tilt:-0.4deg;}
+  .recipe-card::before{
+    content:""; position:absolute; top:-10px; left:50%; transform:translateX(-50%) rotate(-3deg);
+    width:46px; height:18px; background:rgba(201,123,61,0.35); border:1px solid rgba(201,123,61,0.4);
+  }
+  .recipe-card .rc-top{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;}
+  .recipe-card .rc-num{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--sage); letter-spacing:0.06em;}
+  .recipe-card .rc-time{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--brown-soft); background:var(--cream-deep); padding:4px 9px; border-radius:100px;}
+  .recipe-card h4{font-family:'Fraunces',serif; font-size:21px; color:var(--forest); font-weight:600; margin-bottom:4px;}
+  .recipe-card .rc-by{font-size:11.5px; color:var(--amber); font-weight:600; margin-bottom:16px; display:block; font-style:italic; font-family:'Fraunces',serif;}
+  .recipe-card .rc-section-label{font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--brown-soft); margin-bottom:6px; margin-top:14px; display:block;}
+  .recipe-card ul{list-style:none; display:flex; flex-direction:column; gap:5px;}
+  .recipe-card ul li{font-size:12.5px; color:var(--brown-soft); padding-left:14px; position:relative; line-height:1.5;}
+  .recipe-card ul li::before{content:"·"; position:absolute; left:2px; color:var(--amber); font-weight:700;}
+  .recipe-card .rc-note{
+    margin-top:16px; padding-top:14px; border-top:1px dashed var(--wheat-line);
+    font-size:12px; color:var(--brown-soft); font-style:italic; line-height:1.5;
+  }
+  .recipe-card .rc-note b{color:var(--brown); font-style:normal; font-weight:600;}
+
   /* ===== ASK / CTA ===== */
   .ask{background:var(--forest); color:var(--cream); border-radius:28px; margin:0 32px 96px; padding:64px 56px; position:relative; overflow:hidden;}
   .ask::before{
@@ -311,6 +365,9 @@
     .ask{margin:0 16px 64px; padding:40px 28px;}
     .navlinks{display:none;}
     section{padding:64px 0;}
+    .video-split{grid-template-columns:1fr;}
+    .recipe-grid{grid-template-columns:1fr;}
+    .granny-head{flex-direction:column; align-items:flex-start;}
   }
 </style>
 </head>
@@ -322,6 +379,8 @@
     <div class="navlinks">
       <a href="#problem">The Gap</a>
       <a href="#product">Product</a>
+      <a href="#video">In the Kitchen</a>
+      <a href="#granny">Granny's Recipes</a>
       <a href="#market">Market</a>
       <a href="#gtm">Go-to-Market</a>
       <a href="#ask">The Ask</a>
@@ -335,30 +394,30 @@
     <div>
       <div class="hero-eyebrow"><span class="dot"></span><span class="eyebrow amber">Saral Protein Atta+ — Seed Round</span></div>
       <h1 class="headline">Protein for the family,<br>baked into the <em>roti</em> they already trust.</h1>
-      <p class="hero-sub">Six in ten urban Indians are protein deficient and don't know it. We're not selling another powder — we're adding 16% more protein to the staple a mother already serves every single day.</p>
+      <p class="hero-sub">Most urban Indians are protein deficient and don't know it. We're not selling another powder — we're adding 16g of protein per 100g to the staple a mother already serves every single day.</p>
       <div class="hero-actions">
-        <a href="#ask" class="btn-primary">See the ₹1,000 Cr roadmap →</a>
+        <a href="#ask" class="btn-primary">See the growth roadmap →</a>
         <a href="#product" class="btn-ghost">Meet the product</a>
       </div>
       <div class="hero-trust">
-        <div class="trust-stat"><div class="num">₹50,000 Cr</div><div class="lbl">Total addressable market</div></div>
-        <div class="trust-stat"><div class="num">+16%</div><div class="lbl">Protein vs. regular atta</div></div>
-        <div class="trust-stat"><div class="num">75%</div><div class="lbl">Urban consumers underaware</div></div>
+        <div class="trust-stat"><div class="num">16g</div><div class="lbl">Protein per 100g</div></div>
+        <div class="trust-stat"><div class="num">Atta</div><div class="lbl">The everyday staple, not a supplement</div></div>
+        <div class="trust-stat"><div class="num">Trust</div><div class="lbl">Built on a name families already know</div></div>
       </div>
     </div>
     <div class="roti-stage">
       <div class="roti-ring"></div>
       <div class="roti"></div>
-      <div class="protein-tag">PROTEIN<br><span class="big">+16%</span>per roti</div>
+      <div class="protein-tag">PROTEIN<br><span class="big">16g</span>per 100g</div>
       <div class="badge-float"><span class="swatch"></span>Made for families</div>
     </div>
   </div>
   <div class="strip">
     <div class="wrap">
-      <div class="strip-item"><b>₹85/kg</b> suggested MRP</div>
-      <div class="strip-item"><b>1kg · 5kg · 10kg</b> family formats</div>
-      <div class="strip-item"><b>15% CAGR</b> packaged atta market</div>
-      <div class="strip-item"><b>~1.1 Mn</b> households to ₹1,000 Cr</div>
+      <div class="strip-item"><b>Everyday MRP</b> built for repeat, not trial</div>
+      <div class="strip-item"><b>Multiple pack sizes</b> for every family</div>
+      <div class="strip-item"><b>Growing category</b> as packaged atta scales</div>
+      <div class="strip-item"><b>Household-led growth</b> habit by habit</div>
     </div>
   </div>
 </header>
@@ -372,28 +431,28 @@
     <div class="section-head">
       <span class="eyebrow on-dark">Why the gap exists</span>
       <h2>India isn't under-fed. It's under-protein'd — and no one's told the cook.</h2>
-      <p>The ICMR-NIN recommends ~0.83g of protein per kg of body weight. Most Indian households fall short — not from scarcity, but because protein-rich food is seen as expensive, bland, or someone else's problem.</p>
+      <p>The recommended daily protein intake is rarely met across Indian households — not from scarcity, but because protein-rich food is seen as expensive, bland, or someone else's problem.</p>
     </div>
     <div class="gap-grid">
       <div class="gap-card">
-        <div class="ringnum"><span>36%</span></div>
+        <div class="ringnum"><span>Rural</span></div>
         <h4>Rural deficient</h4>
-        <p>More than a third of rural India falls short of the recommended daily protein intake.</p>
+        <p>A meaningful share of rural India falls short of the recommended daily protein intake.</p>
       </div>
       <div class="gap-card">
-        <div class="ringnum"><span>44%</span></div>
+        <div class="ringnum"><span>Urban</span></div>
         <h4>Urban deficient</h4>
         <p>Urban households fare worse — convenience food has crowded out protein-dense everyday meals.</p>
       </div>
       <div class="gap-card">
-        <div class="ringnum"><span>6/10</span></div>
+        <div class="ringnum"><span>Quiet</span></div>
         <h4>Quietly inadequate</h4>
-        <p>Six in ten urban consumers show signs of protein inadequacy without ever being diagnosed.</p>
+        <p>Most urban consumers show signs of protein inadequacy without ever being diagnosed.</p>
       </div>
       <div class="gap-card">
-        <div class="ringnum"><span>75%</span></div>
+        <div class="ringnum"><span>Unaware</span></div>
         <h4>Don't know their need</h4>
-        <p>Three in four urban consumers have no idea how much protein their family actually requires.</p>
+        <p>Most urban consumers have no idea how much protein their family actually requires.</p>
       </div>
     </div>
   </div>
@@ -407,15 +466,15 @@
         <div class="pname">Saral Protein Atta+</div>
         <p class="pdesc">100% atta, rich in protein, made for families — not gym shelves.</p>
         <div class="pack-stats">
-          <div><div class="v">+16%</div><div class="k">Protein</div></div>
-          <div><div class="v">₹85/kg</div><div class="k">MRP</div></div>
-          <div><div class="v">3</div><div class="k">Pack sizes</div></div>
+          <div><div class="v">16g</div><div class="k">Protein / 100g</div></div>
+          <div><div class="v">Family</div><div class="k">Everyday MRP</div></div>
+          <div><div class="v">Sizes</div><div class="k">Made to share</div></div>
         </div>
       </div>
       <div class="feature-list">
         <div class="f"><div class="ic">✓</div><div><b>Everyday staple, not a supplement</b><p>No new habit to build — just more nutrition in the one food every Indian family already eats daily.</p></div></div>
         <div class="f"><div class="ic">✓</div><div><b>Built on trust, not hype</b><p>The Saral name carries household trust that a new protein brand would spend years earning.</p></div></div>
-        <div class="f"><div class="ic">✓</div><div><b>Priced for repeat, not for trial</b><p>At ₹85/kg, it sits in everyday-affordable territory — not premium-aisle protein pricing.</p></div></div>
+        <div class="f"><div class="ic">✓</div><div><b>Priced for repeat, not for trial</b><p>It sits in everyday-affordable territory — not premium-aisle protein pricing.</p></div></div>
       </div>
     </div>
     <div>
@@ -445,44 +504,147 @@
   </div>
 </section>
 
+<section class="video-section" id="video">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">In the kitchen</span>
+      <h2>What this looks like at the chakla, not just on a slide.</h2>
+      <p>A quick look at how a protein-enriched atta behaves where it actually matters — in the dough, on the tava, in the roti a mother hands her family every day.</p>
+    </div>
+    <div class="video-split">
+      <div>
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/W6lDH2dO5lI" title="Saral Protein Atta+ in the kitchen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-caption"><span class="swatch"></span><span>Reference: roti-making process, used here for illustration.</span></div>
+      </div>
+      <div>
+        <div class="video-points">
+          <div class="vp"><div class="ic">①</div><div><b>Same dough, same method</b><p>No new kitchen skill required — the atta kneads, rests, and rolls exactly like what's already in the tin.</p></div></div>
+          <div class="vp"><div class="ic">②</div><div><b>No taste trade-off</b><p>The protein boost is engineered to disappear into the flavour families already know, not announce itself.</p></div></div>
+          <div class="vp"><div class="ic">③</div><div><b>The moment that sells it</b><p>It's not the pitch deck that converts a mother — it's watching the roti puff up exactly like it always has.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="granny" id="granny">
+  <div class="wrap">
+    <div class="granny-head">
+      <div class="section-head" style="margin-bottom:0;">
+        <span class="eyebrow amber">From the family kitchen</span>
+        <h2>Granny's recipes, re-rolled with Saral Protein Atta+.</h2>
+      </div>
+      <p class="granny-intro">"The best protein habit is the one nobody notices is a habit." — recipes handed down, not invented in a lab.</p>
+    </div>
+    <div class="recipe-grid">
+
+      <div class="recipe-card">
+        <div class="rc-top"><span class="rc-num">RECIPE 01</span><span class="rc-time">25 min</span></div>
+        <h4>Dadi's Soft Phulka</h4>
+        <span class="rc-by">— as made every evening, for as long as anyone remembers</span>
+        <span class="rc-section-label">You'll need</span>
+        <ul>
+          <li>2 cups Saral Protein Atta+</li>
+          <li>3/4 cup warm water, added slowly</li>
+          <li>1/2 tsp ghee, for the dough</li>
+          <li>Extra ghee, for finishing</li>
+        </ul>
+        <span class="rc-section-label">Method</span>
+        <ul>
+          <li>Knead into a soft, slightly sticky dough; rest 20 minutes covered with a damp cloth</li>
+          <li>Roll thin and even — granny always said an uneven phulka puffs unevenly</li>
+          <li>Cook on a hot tava till bubbles form, then finish briefly over open flame</li>
+          <li>Brush with ghee and stack in a cloth-lined dabba to stay soft</li>
+        </ul>
+        <div class="rc-note">Granny's tip: <b>rest the dough, don't rush it</b> — that's what keeps it soft till the last roti, not just the first.</div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="rc-top"><span class="rc-num">RECIPE 02</span><span class="rc-time">35 min</span></div>
+        <h4>Nani's Methi Thepla</h4>
+        <span class="rc-by">— the one that travels well in a tiffin</span>
+        <span class="rc-section-label">You'll need</span>
+        <ul>
+          <li>2 cups Saral Protein Atta+</li>
+          <li>1 cup chopped fresh methi leaves</li>
+          <li>2 tbsp curd, 1 tsp ajwain, 1 tsp red chilli powder</li>
+          <li>2 tbsp oil, salt to taste, water as needed</li>
+        </ul>
+        <span class="rc-section-label">Method</span>
+        <ul>
+          <li>Mix atta with methi, curd and spices; bring together with a little water into a firm dough</li>
+          <li>Rest 15 minutes so the methi softens into the dough</li>
+          <li>Roll medium-thick and cook on a hot tava with a little oil on each side, till golden-spotted</li>
+          <li>Serve warm, or pack once fully cooled</li>
+        </ul>
+        <div class="rc-note">Nani's tip: <b>a spoon of curd in the dough</b> keeps thepla soft even hours later, no extra ghee needed.</div>
+      </div>
+
+      <div class="recipe-card">
+        <div class="rc-top"><span class="rc-num">RECIPE 03</span><span class="rc-time">20 min</span></div>
+        <h4>Amma's Jaggery Roti</h4>
+        <span class="rc-by">— the after-school one, still warm from the tava</span>
+        <span class="rc-section-label">You'll need</span>
+        <ul>
+          <li>2 cups Saral Protein Atta+</li>
+          <li>3 tbsp grated jaggery, dissolved in warm milk</li>
+          <li>1 tbsp ghee</li>
+          <li>A pinch of cardamom powder</li>
+        </ul>
+        <span class="rc-section-label">Method</span>
+        <ul>
+          <li>Warm the milk just enough to melt the jaggery completely, then cool slightly</li>
+          <li>Knead atta with the jaggery-milk, ghee and cardamom into a smooth dough</li>
+          <li>Roll gently — this dough tears more easily than a plain one — and cook on medium heat</li>
+          <li>Finish both sides with a light brush of ghee till lightly caramelised</li>
+        </ul>
+        <div class="rc-note">Amma's tip: <b>medium heat, more patience</b> — jaggery catches fast on a too-hot tava.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section class="market" id="market">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Sizing the opportunity</span>
-      <h2>A ₹50,000 Cr category, with a clear ₹750 Cr foothold.</h2>
+      <h2>A large category, with a clear, obtainable foothold.</h2>
       <p>The packaged atta market is shifting away from loose, unbranded flour — and protein is becoming the reason families choose to switch.</p>
     </div>
     <div class="tam-row">
       <div class="tam-card">
         <span class="tam-label">TAM</span>
         <div class="tam-name">Total Addressable Market</div>
-        <div class="tam-val">₹50,000 Cr</div>
-        <div class="tam-sub">~24 MMT of packaged atta sold nationally at an average MRP of ₹85/kg.</div>
+        <div class="tam-val">National</div>
+        <div class="tam-sub">The full packaged atta market sold across India.</div>
       </div>
       <div class="tam-card">
         <span class="tam-label">SAM</span>
         <div class="tam-name">Serviceable Addressable Market</div>
-        <div class="tam-val">₹7,500 Cr</div>
-        <div class="tam-sub">The high-protein atta segment specifically — roughly 12 MMT of volume.</div>
+        <div class="tam-val">High-Protein</div>
+        <div class="tam-sub">The high-protein atta segment specifically, within packaged atta.</div>
       </div>
       <div class="tam-card som">
         <span class="tam-label">SOM</span>
         <div class="tam-name">Serviceable Obtainable Market</div>
-        <div class="tam-val">₹750 Cr</div>
-        <div class="tam-sub">A realistic ~10% share of the high-protein atta segment by Year 5.</div>
+        <div class="tam-val">Realistic</div>
+        <div class="tam-sub">A realistic share of the high-protein atta segment by Year 5.</div>
       </div>
     </div>
     <div class="market-split">
       <div class="roadmap-card">
-        <h3>Roadmap to ₹1,000 Cr</h3>
+        <h3>Roadmap to scale</h3>
         <div class="bars">
-          <div class="bar-col"><div class="bar" style="height:14%;"><span>₹120 Cr</span></div><div class="yr">Y1</div></div>
-          <div class="bar-col"><div class="bar" style="height:24%;"><span>₹220 Cr</span></div><div class="yr">Y2</div></div>
-          <div class="bar-col"><div class="bar" style="height:42%;"><span>₹360 Cr</span></div><div class="yr">Y3</div></div>
-          <div class="bar-col"><div class="bar" style="height:65%;"><span>₹550 Cr</span></div><div class="yr">Y4</div></div>
-          <div class="bar-col"><div class="bar final" style="height:100%;"><span>₹1,000 Cr</span></div><div class="yr">Y5</div></div>
+          <div class="bar-col"><div class="bar" style="height:14%;"><span>Launch</span></div><div class="yr">Y1</div></div>
+          <div class="bar-col"><div class="bar" style="height:24%;"><span>Build</span></div><div class="yr">Y2</div></div>
+          <div class="bar-col"><div class="bar" style="height:42%;"><span>Expand</span></div><div class="yr">Y3</div></div>
+          <div class="bar-col"><div class="bar" style="height:65%;"><span>Scale</span></div><div class="yr">Y4</div></div>
+          <div class="bar-col"><div class="bar final" style="height:100%;"><span>Lead</span></div><div class="yr">Y5</div></div>
         </div>
-        <p style="font-size:12.5px; color:var(--brown-soft); margin-top:8px;">15% CAGR delivers ₹1,000 Cr by Year 5, on roughly 1.1 million active households.</p>
+        <p style="font-size:12.5px; color:var(--brown-soft); margin-top:8px;">Steady, repeat-led growth in active households drives the climb to Year 5.</p>
       </div>
       <div class="comp-card">
         <h3>Why atta wins the protein race</h3>
@@ -509,19 +671,19 @@
       <div class="phase-card">
         <span class="pnum">PHASE 01</span>
         <h4>South-first launch</h4>
-        <div class="when">Months 0–6</div>
+        <div class="when">Early phase</div>
         <p>Karnataka, Tamil Nadu, Telangana, Andhra Pradesh — the region already leading protein adoption.</p>
       </div>
       <div class="phase-card">
         <span class="pnum">PHASE 02</span>
         <h4>Tier 2/3 expansion</h4>
-        <div class="when">Months 6–18</div>
+        <div class="when">Growth phase</div>
         <p>Rural general trade penetration, anchored by kirana visibility and on-ground awareness drives.</p>
       </div>
       <div class="phase-card">
         <span class="pnum">PHASE 03</span>
         <h4>National scale</h4>
-        <div class="when">Months 18–36</div>
+        <div class="when">Scale phase</div>
         <p>Repeat-led growth nationally, powered by family-pack adoption and distribution expansion.</p>
       </div>
     </div>
@@ -534,16 +696,17 @@
   </div>
 </section>
 
+
 <section id="ask" style="padding-top:0;">
   <div class="ask">
     <div class="ask-inner">
       <div>
         <span class="eyebrow on-dark" style="margin-bottom:14px; display:block;">The ask</span>
         <h2>Back a single, scalable, protein-forward platform.</h2>
-        <p>Saral Protein Atta+ balances scale, affordability, and trust in one everyday habit. We're raising to fund the South-first launch, build out general trade distribution, and reach 1.1 million active households by Year 5.</p>
+        <p>Saral Protein Atta+ balances scale, affordability, and trust in one everyday habit. We're raising to fund the South-first launch, build out general trade distribution, and grow active households nationally.</p>
       </div>
       <div class="ask-right">
-        <div class="ask-figure">₹1,000 Cr<span>Year 5 revenue target</span></div>
+        <div class="ask-figure">16g<span>Protein per 100g</span></div>
         <a href="#" class="btn-on-dark">Request the full deck →</a>
       </div>
     </div>
@@ -553,7 +716,7 @@
 <footer>
   <div class="wrap">
     <div class="fmeta">Saral Protein Atta+ — Investor Brief · Prepared by Team 45, XIMB BM Batch 2026–28</div>
-    <div class="flinks"><a href="#problem">The Gap</a><a href="#product">Product</a><a href="#market">Market</a><a href="#gtm">Go-to-Market</a></div>
+    <div class="flinks"><a href="#problem">The Gap</a><a href="#product">Product</a><a href="#granny">Recipes</a><a href="#market">Market</a><a href="#gtm">Go-to-Market</a></div>
   </div>
 </footer>
 
