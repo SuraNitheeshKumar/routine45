@@ -4,18 +4,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Make Your Life Saral | Saral Protein Atta+</title>
+  <title>Make Your Life Saral</title>
 
   <style>
     :root {
-      --navy: #082b72;
-      --green: #11733d;
-      --light-green: #eaf7ee;
-      --yellow: #f7c948;
+      --navy: #06245f;
+      --green: #0c6b39;
+      --light-green: #edf8f0;
+      --gold: #f5c84c;
       --cream: #fffaf0;
-      --text: #182232;
-      --muted: #5f6774;
+      --text: #1f2937;
+      --muted: #677084;
       --white: #ffffff;
+      --shadow: 0 10px 28px rgba(6, 36, 95, 0.12);
     }
 
     * {
@@ -28,366 +29,432 @@
     body {
       background: #f7f9fc;
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     header {
       background: var(--navy);
-      color: var(--white);
-      padding: 18px 48px;
+      min-height: 76px;
+      padding: 16px 5%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 30px;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
 
     .brand {
-      font-size: 30px;
+      color: var(--white);
+      font-size: clamp(24px, 3vw, 32px);
       font-weight: 800;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.7px;
     }
 
     .brand span {
-      color: var(--yellow);
+      color: var(--gold);
     }
 
-    /* Right-aligned menu with Login/Signup as the rightmost item */
     nav {
       margin-left: auto;
     }
 
+    /* Login / Signup stays on the far-right.
+       Products is immediately beside it. */
     nav ul {
       display: flex;
       flex-direction: row-reverse;
-      justify-content: flex-start;
-      gap: 26px;
-      list-style: none;
       align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 22px;
+      list-style: none;
     }
 
-    nav a {
-      color: var(--white);
+    nav a,
+    .menu-toggle {
+      border: none;
+      background: transparent;
+      color: white;
+      cursor: pointer;
       text-decoration: none;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
-      transition: color 0.2s ease;
     }
 
-    nav a:hover {
-      color: var(--yellow);
+    nav a:hover,
+    .menu-toggle:hover {
+      color: var(--gold);
+    }
+
+    .products-menu {
+      position: relative;
+    }
+
+    .products-menu-content {
+      display: none;
+      position: absolute;
+      top: 28px;
+      right: 0;
+      min-width: 210px;
+      padding: 10px;
+      border-radius: 10px;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .products-menu:hover .products-menu-content {
+      display: block;
+    }
+
+    .products-menu-content button {
+      width: 100%;
+      padding: 10px 12px;
+      text-align: left;
+      border: none;
+      background: transparent;
+      color: var(--navy);
+      cursor: pointer;
+      border-radius: 7px;
+      font-weight: 700;
+    }
+
+    .products-menu-content button:hover {
+      background: var(--light-green);
+      color: var(--green);
     }
 
     .hero {
-      padding: 72px 24px 58px;
       text-align: center;
-      background: linear-gradient(135deg, #effcf3 0%, #e5f0ff 55%, #fff4d6 100%);
+      padding: 76px 20px 56px;
+      background:
+        radial-gradient(circle at 18% 15%, #dff4e7 0, transparent 32%),
+        radial-gradient(circle at 85% 15%, #fff0b7 0, transparent 28%),
+        linear-gradient(135deg, #f7fffa, #edf3ff);
     }
 
     .hero h1 {
       color: var(--navy);
-      font-size: clamp(34px, 5vw, 58px);
-      line-height: 1.1;
-      max-width: 980px;
-      margin: 0 auto 22px;
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.08;
+      max-width: 1000px;
+      margin: auto;
     }
 
     .hero-banner {
-      max-width: 980px;
-      margin: 0 auto;
+      max-width: 920px;
+      margin: 26px auto 0;
       padding: 20px 28px;
       border-radius: 14px;
       color: white;
-      background: linear-gradient(90deg, var(--green), #178a5a, var(--navy));
-      box-shadow: 0 10px 24px rgba(8, 43, 114, 0.18);
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--green), #188c52, var(--navy));
+      box-shadow: var(--shadow);
     }
 
     .hero-banner strong {
-      color: var(--yellow);
+      color: var(--gold);
     }
 
-    .primary-btn {
+    .btn {
       display: inline-block;
-      margin-top: 28px;
-      padding: 14px 26px;
+      padding: 13px 22px;
+      border: none;
       border-radius: 9px;
-      background: var(--navy);
       color: white;
-      text-decoration: none;
+      background: var(--navy);
       font-weight: 800;
-      transition: transform 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      margin-top: 24px;
     }
 
-    .primary-btn:hover {
+    .btn:hover {
       background: var(--green);
-      transform: translateY(-2px);
     }
 
     .section {
-      max-width: 1200px;
+      max-width: 1240px;
       margin: auto;
-      padding: 65px 28px;
+      padding: 66px 24px;
     }
 
     .section-title {
       color: var(--navy);
       font-size: 34px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .section-subtitle {
+      max-width: 850px;
       color: var(--muted);
       margin-bottom: 28px;
-      max-width: 800px;
     }
 
-    .features,
-    .plans,
-    .career-grid,
-    .two-column {
+    .grid {
       display: grid;
       gap: 22px;
     }
 
-    .features {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    .product-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
     }
 
-    .feature-card,
-    .plan-card,
-    .career-card,
-    .content-box {
-      background: var(--white);
-      border-radius: 14px;
-      box-shadow: 0 8px 20px rgba(22, 37, 68, 0.08);
-    }
-
-    .feature-card {
-      padding: 24px;
-      border-top: 5px solid var(--green);
-    }
-
-    .feature-card h3 {
+    .tab {
+      border: 1px solid #cde6d5;
+      background: white;
       color: var(--navy);
-      margin-bottom: 10px;
+      padding: 11px 16px;
+      border-radius: 25px;
+      font-weight: 800;
+      cursor: pointer;
     }
 
-    .plans {
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    }
-
-    .plan-card {
-      padding: 30px 26px;
-      border: 2px solid transparent;
-      text-align: center;
-      transition: 0.25s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .plan-card:hover {
-      transform: translateY(-5px);
+    .tab.active,
+    .tab:hover {
+      background: var(--green);
+      color: white;
       border-color: var(--green);
     }
 
-    .popular-tag {
-      position: absolute;
-      top: 15px;
-      right: -35px;
-      transform: rotate(38deg);
-      background: var(--yellow);
+    .product-grid {
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-card-content {
+      padding: 18px;
+    }
+
+    .product-card h3 {
       color: var(--navy);
-      padding: 5px 40px;
+      margin-bottom: 7px;
+      font-size: 20px;
+    }
+
+    .product-type {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 9px;
+    }
+
+    .packet-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .packet-list span {
+      padding: 5px 9px;
+      border-radius: 20px;
+      background: var(--light-green);
+      color: var(--green);
       font-size: 12px;
       font-weight: 800;
     }
 
-    .plan-card h3 {
+    .plans {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .plan {
+      background: white;
+      border-radius: 15px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border: 2px solid transparent;
+    }
+
+    .plan:hover {
+      border-color: var(--green);
+    }
+
+    .plan h3 {
       color: var(--navy);
       font-size: 23px;
-      margin-bottom: 6px;
     }
 
-    .plan-price {
+    .price {
+      color: var(--green);
       font-size: 34px;
-      color: var(--green);
-      font-weight: 800;
-      margin: 14px 0 4px;
+      font-weight: 900;
+      margin: 12px 0 2px;
     }
 
-    .plan-price span {
-      font-size: 15px;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .discount-chip {
+    .discount {
       display: inline-block;
-      background: var(--light-green);
+      background: #e7f7eb;
       color: var(--green);
-      font-weight: 800;
+      border-radius: 20px;
       padding: 6px 12px;
-      border-radius: 30px;
-      margin: 10px 0 16px;
+      font-size: 13px;
+      font-weight: 800;
+      margin: 10px 0;
     }
 
-    .gift-box {
-      background: var(--cream);
-      border: 1px dashed #d3a716;
-      border-radius: 10px;
+    .gift {
+      margin: 14px 0;
       padding: 12px;
-      margin: 16px 0;
-      color: #6c5300;
+      background: #fff8dd;
+      border: 1px dashed #d5a200;
+      border-radius: 10px;
+      color: #705600;
       font-weight: 700;
     }
 
-    .plan-card ul {
+    .plan ul {
       list-style: none;
       text-align: left;
-      margin: 18px 0;
+      margin: 15px 0;
     }
 
-    .plan-card li {
-      margin-bottom: 10px;
-      color: #394150;
+    .plan li {
+      margin: 8px 0;
     }
 
-    .plan-card li::before {
+    .plan li::before {
       content: "✓";
       color: var(--green);
       font-weight: 900;
-      margin-right: 9px;
+      margin-right: 8px;
     }
 
-    .plan-btn {
-      width: 100%;
-      border: none;
-      cursor: pointer;
-      padding: 13px;
-      border-radius: 9px;
-      background: var(--navy);
-      color: white;
-      font-size: 15px;
-      font-weight: 800;
-    }
-
-    .plan-btn:hover {
-      background: var(--green);
-    }
-
-    .two-column {
+    .two-col {
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
 
-    .content-box {
-      padding: 28px;
+    .card {
+      background: white;
+      padding: 26px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
     }
 
-    .content-box h3 {
+    .card h3 {
       color: var(--navy);
+      margin-bottom: 14px;
       font-size: 24px;
-      margin-bottom: 12px;
     }
 
     .career-grid {
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      margin-top: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-top: 15px;
     }
 
-    .career-card {
-      padding: 20px;
+    .career {
       border-left: 5px solid var(--green);
+      padding: 16px;
+      background: #fbfefd;
+      border-radius: 9px;
     }
 
-    .career-card h4 {
+    .career h4 {
       color: var(--navy);
-      margin-bottom: 8px;
-      font-size: 18px;
+      margin-bottom: 5px;
     }
 
-    .career-meta {
+    .career small {
       color: var(--green);
-      font-weight: 700;
-      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .login-card {
+      background: linear-gradient(135deg, var(--navy), var(--green));
+      color: white;
+    }
+
+    .login-card h3 {
+      color: white;
+    }
+
+    .login-card input,
+    .location-panel select {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      margin: 8px 0;
+      font-size: 15px;
+    }
+
+    .login-card button,
+    .location-panel button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 9px;
+      cursor: pointer;
+      font-weight: 800;
+      color: var(--navy);
+      background: var(--gold);
+    }
+
+    .location-panel {
+      display: none;
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.16);
+    }
+
+    .location-panel h4 {
       margin-bottom: 8px;
     }
 
-    .map-wrap {
-      background: #eef8f1;
-      border-radius: 15px;
-      padding: 20px;
-      border: 1px solid #cfe8d6;
-      margin-top: 16px;
+    .store-results {
+      display: none;
+      margin-top: 25px;
     }
 
-    .map-wrap svg {
+    .map-frame {
       width: 100%;
-      height: auto;
-      display: block;
+      height: 300px;
+      border: 0;
+      border-radius: 12px;
+      margin: 14px 0;
     }
 
-    .map-note {
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 14px;
+    .store-list {
+      display: grid;
+      gap: 12px;
     }
 
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 14px;
-      font-size: 14px;
-      font-weight: 700;
+    .store {
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #dce9df;
+      background: #f8fff9;
     }
 
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--green);
-      display: inline-block;
-    }
-
-    .dot.secondary {
-      background: var(--yellow);
-    }
-
-    .auth-box {
-      background: linear-gradient(135deg, #0b2c73, #146b43);
-      color: white;
-    }
-
-    .auth-box h3 {
-      color: white;
-    }
-
-    .auth-box input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      margin: 7px 0;
-    }
-
-    .auth-box button {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      background: var(--yellow);
+    .store strong {
       color: var(--navy);
-      font-weight: 800;
-      margin-top: 10px;
     }
 
     footer {
@@ -399,20 +466,15 @@
 
     @media (max-width: 720px) {
       header {
-        padding: 18px 22px;
+        padding: 15px 20px;
       }
 
       nav ul {
-        gap: 14px;
-        flex-wrap: wrap;
+        gap: 12px;
       }
 
       .section {
-        padding: 52px 20px;
-      }
-
-      .hero-banner {
-        font-size: 16px;
+        padding: 52px 18px;
       }
     }
   </style>
@@ -424,7 +486,18 @@
 
     <nav>
       <ul>
-        <li><a href="#login-signup">Login / Sign Up</a></li>
+        <li><a href="#login">Login / Sign Up</a></li>
+
+        <li class="products-menu">
+          <button class="menu-toggle">Products ▾</button>
+          <div class="products-menu-content">
+            <button onclick="showCategory('dairy')">Saral Dairy</button>
+            <button onclick="showCategory('snacks')">Saral Snacks</button>
+            <button onclick="showCategory('beverages')">Saral Beverages</button>
+            <button onclick="showCategory('atta')">Saral Atta</button>
+          </div>
+        </li>
+
         <li><a href="#about">About Us</a></li>
         <li><a href="#careers">Careers</a></li>
         <li><a href="#locations">Locations</a></li>
@@ -433,242 +506,396 @@
   </header>
 
   <section class="hero">
-    <h1>Everyday rotis. Everyday protein. Every day made Saral.</h1>
+    <h1>Everyday food. Everyday nutrition. Every day made Saral.</h1>
 
     <div class="hero-banner">
-      <strong>Saral Protein Atta+</strong> gives your family 16g protein per 100g —
-      built into the rotis they already know, trust, and enjoy.
+      From <strong>Saral Protein Atta+</strong> to dairy, snacks and beverages —
+      trusted everyday products for Indian families.
     </div>
 
-    <a class="primary-btn" href="#subscription">Explore Subscription Plans</a>
+    <a class="btn" href="#products">Explore Our Products</a>
   </section>
 
   <section class="section" id="about">
-    <h2 class="section-title">About Saral Protein Atta+</h2>
+    <h2 class="section-title">About Us</h2>
     <p class="section-subtitle">
-      We are making family nutrition easier by bringing high-protein atta into the everyday Indian kitchen.
-      No complicated meal plans. No premium supplement routine. Just more nutrition in every familiar roti.
+      Saral is designed around one thought: make everyday family nutrition simpler,
+      tastier, more accessible, and easier to trust.
+    </p>
+  </section>
+
+  <section class="section" id="products">
+    <h2 class="section-title">Saral Product Portfolio</h2>
+    <p class="section-subtitle">
+      Select a category to explore the Saral range. Product images below are visual placeholders;
+      replace them with official branded pack shots before launch.
     </p>
 
-    <div class="features">
-      <div class="feature-card">
-        <h3>16g Protein / 100g</h3>
-        <p>High-protein nutrition designed for everyday household consumption.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>Made for Families</h3>
-        <p>Created for health-conscious mothers, working professionals, and senior citizens.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>Daily Staple</h3>
-        <p>No new consumption habit needed — simply use it in regular rotis and parathas.</p>
-      </div>
-
-      <div class="feature-card">
-        <h3>Affordable Nutrition</h3>
-        <p>Subscription-led pricing makes consistent protein intake more accessible for homes.</p>
-      </div>
+    <div class="product-tabs">
+      <button class="tab active" data-category="dairy" onclick="showCategory('dairy')">Saral Dairy</button>
+      <button class="tab" data-category="snacks" onclick="showCategory('snacks')">Saral Snacks</button>
+      <button class="tab" data-category="beverages" onclick="showCategory('beverages')">Saral Beverages</button>
+      <button class="tab" data-category="atta" onclick="showCategory('atta')">Saral Atta</button>
     </div>
+
+    <div class="grid product-grid" id="productGrid"></div>
   </section>
 
   <section class="section" id="subscription">
-    <h2 class="section-title">Saral Subscription Plans</h2>
+    <h2 class="section-title">Saral Protein Atta+ Subscription</h2>
     <p class="section-subtitle">
-      Choose a long-term nutrition plan for your family and unlock savings, doorstep delivery, and a one-time free Saral Protein Atta+ gift pack.
+      Family nutrition made easier with savings, scheduled deliveries and one-time welcome packs.
     </p>
 
-    <div class="plans">
-      <div class="plan-card">
+    <div class="grid plans">
+      <div class="plan">
         <h3>1-Year Plan</h3>
-        <div class="plan-price">₹199 <span>/ month</span></div>
-        <div class="discount-chip">10% Subscription Discount</div>
-
-        <div class="gift-box">
-          One-time welcome gift: 1 kg Saral Protein Atta+ pack
-        </div>
-
+        <div class="price">₹199 <small>/ month</small></div>
+        <div class="discount">10% Subscription Discount</div>
+        <div class="gift">One-time gift: 1 kg Saral Protein Atta+ pack</div>
         <ul>
           <li>12 monthly deliveries</li>
-          <li>10% saving versus regular purchase</li>
           <li>Flexible delivery scheduling</li>
           <li>Family nutrition reminders</li>
         </ul>
-
-        <button class="plan-btn">Subscribe for 1 Year</button>
+        <button class="btn">Subscribe for 1 Year</button>
       </div>
 
-      <div class="plan-card">
-        <div class="popular-tag">BEST VALUE</div>
+      <div class="plan">
         <h3>2-Year Plan</h3>
-        <div class="plan-price">₹149 <span>/ month</span></div>
-        <div class="discount-chip">12% Subscription Discount</div>
-
-        <div class="gift-box">
-          One-time welcome gift: 2 kg Saral Protein Atta+ pack
-        </div>
-
+        <div class="price">₹149 <small>/ month</small></div>
+        <div class="discount">12% Subscription Discount</div>
+        <div class="gift">One-time gift: 2 kg Saral Protein Atta+ pack</div>
         <ul>
           <li>24 monthly deliveries</li>
-          <li>12% saving versus regular purchase</li>
-          <li>Priority support and delivery slots</li>
+          <li>Priority delivery slots</li>
           <li>Quarterly nutrition updates</li>
         </ul>
-
-        <button class="plan-btn">Subscribe for 2 Years</button>
+        <button class="btn">Subscribe for 2 Years</button>
       </div>
 
-      <div class="plan-card">
+      <div class="plan">
         <h3>5-Year Plan</h3>
-        <div class="plan-price">₹99 <span>/ month</span></div>
-        <div class="discount-chip">15% Subscription Discount</div>
-
-        <div class="gift-box">
-          One-time welcome gift: 5 kg Saral Protein Atta+ pack
-        </div>
-
+        <div class="price">₹99 <small>/ month</small></div>
+        <div class="discount">15% Subscription Discount</div>
+        <div class="gift">One-time gift: 5 kg Saral Protein Atta+ pack</div>
         <ul>
           <li>60 monthly deliveries</li>
-          <li>15% saving versus regular purchase</li>
-          <li>Free priority doorstep delivery</li>
-          <li>Exclusive family loyalty benefits</li>
+          <li>Priority doorstep delivery</li>
+          <li>Family loyalty benefits</li>
         </ul>
-
-        <button class="plan-btn">Subscribe for 5 Years</button>
+        <button class="btn">Subscribe for 5 Years</button>
       </div>
     </div>
   </section>
 
   <section class="section" id="careers">
-    <h2 class="section-title">Careers at Saral Protein Atta+</h2>
+    <h2 class="section-title">Careers at Saral</h2>
     <p class="section-subtitle">
-      Join our growing South India team as we build a trusted, affordable protein nutrition brand for Indian homes.
+      Open roles across manufacturing, quality, brand and trade marketing centres.
     </p>
 
-    <div class="career-grid">
-      <div class="career-card">
+    <div class="grid career-grid">
+      <div class="career">
         <h4>Production Supervisor</h4>
-        <div class="career-meta">Manufacturing Centre · Bengaluru</div>
-        <p>Manage production schedules, hygiene standards, packaging quality, and shift-level efficiency.</p>
+        <small>Manufacturing · Bengaluru</small>
+        <p>Manage production schedules, hygiene standards and packaging output.</p>
       </div>
 
-      <div class="career-card">
+      <div class="career">
         <h4>Quality Control Executive</h4>
-        <div class="career-meta">Manufacturing Centre · Hyderabad</div>
-        <p>Monitor raw-material quality, batch testing, food-safety processes, and product consistency.</p>
+        <small>Manufacturing · Hyderabad</small>
+        <p>Monitor raw-material testing, food safety and batch consistency.</p>
       </div>
 
-      <div class="career-card">
+      <div class="career">
         <h4>Plant Maintenance Technician</h4>
-        <div class="career-meta">Manufacturing Centre · Chennai</div>
-        <p>Maintain milling, blending, packing, and utility equipment to support uninterrupted operations.</p>
+        <small>Manufacturing · Chennai</small>
+        <p>Maintain milling, blending and packing equipment.</p>
       </div>
 
-      <div class="career-card">
+      <div class="career">
         <h4>Regional Marketing Executive</h4>
-        <div class="career-meta">Marketing Centre · Bengaluru / Mysuru</div>
-        <p>Drive in-store activations, digital campaigns, local influencer partnerships, and retail visibility.</p>
+        <small>Marketing · Bengaluru / Mysuru</small>
+        <p>Lead local campaigns, retailer activations and brand visibility.</p>
       </div>
 
-      <div class="career-card">
+      <div class="career">
         <h4>Trade Marketing Officer</h4>
-        <div class="career-meta">Marketing Centre · Chennai / Coimbatore</div>
-        <p>Build kirana partnerships, execute merchandising, and improve trial-pack conversions.</p>
+        <small>Marketing · Chennai / Coimbatore</small>
+        <p>Build kirana partnerships and improve in-store conversion.</p>
       </div>
 
-      <div class="career-card">
+      <div class="career">
         <h4>Sales & Distribution Associate</h4>
-        <div class="career-meta">Marketing Centre · Hyderabad / Vijayawada</div>
-        <p>Expand general-trade coverage, support distributors, and improve pantry-repeat growth.</p>
+        <small>Marketing · Hyderabad / Vijayawada</small>
+        <p>Support distributor expansion and improve retail availability.</p>
       </div>
     </div>
   </section>
 
   <section class="section" id="locations">
-    <div class="two-column">
-      <div class="content-box">
-        <h3>Fast-Selling South India Locations</h3>
+    <div class="grid two-col">
+      <div class="card">
+        <h3>Fast-Selling South India Markets</h3>
         <p>
-          Saral Protein Atta+ is prioritising high-adoption South Indian markets where health awareness,
-          modern trade, and family-staple consumption create strong repeat potential.
+          Saral is prioritising Bengaluru, Chennai and Hyderabad, supported by growth markets
+          in Mysuru, Coimbatore and Vijayawada.
         </p>
 
-        <div class="map-wrap">
-          <!-- Illustrative South India map -->
-          <svg viewBox="0 0 500 520" role="img" aria-label="Illustrative map of South India with high-selling Saral Protein Atta+ locations">
-            <rect width="500" height="520" fill="#eef8f1"></rect>
-
-            <path d="M170 50
-                     C220 30, 300 60, 325 125
-                     C340 165, 318 205, 335 250
-                     C350 295, 330 350, 305 385
-                     C278 424, 260 462, 250 500
-                     L180 485
-                     C185 448, 202 414, 210 378
-                     C218 340, 190 305, 170 270
-                     C145 225, 135 180, 145 130
-                     C150 95, 150 70, 170 50 Z"
-                  fill="#d3ebd9"
-                  stroke="#11733d"
-                  stroke-width="4"></path>
-
-            <path d="M278 215 L330 245 L315 312 L270 300 Z"
-                  fill="#f7e6a8"
-                  stroke="#b18100"
-                  stroke-width="3"></path>
-
-            <circle cx="212" cy="142" r="10" fill="#11733d"></circle>
-            <text x="228" y="148" font-size="18" font-weight="700" fill="#082b72">Bengaluru</text>
-
-            <circle cx="250" cy="232" r="10" fill="#11733d"></circle>
-            <text x="266" y="238" font-size="18" font-weight="700" fill="#082b72">Chennai</text>
-
-            <circle cx="292" cy="158" r="10" fill="#11733d"></circle>
-            <text x="308" y="164" font-size="18" font-weight="700" fill="#082b72">Hyderabad</text>
-
-            <circle cx="314" cy="275" r="9" fill="#f7c948"></circle>
-            <text x="330" y="281" font-size="17" font-weight="700" fill="#082b72">Vijayawada</text>
-
-            <circle cx="188" cy="195" r="9" fill="#f7c948"></circle>
-            <text x="72" y="202" font-size="17" font-weight="700" fill="#082b72">Mysuru</text>
-
-            <circle cx="202" cy="290" r="9" fill="#f7c948"></circle>
-            <text x="55" y="297" font-size="17" font-weight="700" fill="#082b72">Coimbatore</text>
-
-            <text x="150" y="40" font-size="22" font-weight="800" fill="#082b72">
-              South India Priority Market Map
-            </text>
-          </svg>
+        <div style="margin-top:16px; padding:18px; background:#edf8f0; border-radius:12px;">
+          <strong style="color:#06245f;">Priority Cities</strong>
+          <p style="margin-top:8px;">
+            Bengaluru · Chennai · Hyderabad<br />
+            Mysuru · Coimbatore · Vijayawada
+          </p>
         </div>
-
-        <div class="legend">
-          <div class="legend-item"><span class="dot"></span> High-selling city</div>
-          <div class="legend-item"><span class="dot secondary"></span> Growth market</div>
-        </div>
-
-        <p class="map-note">
-          High-selling focus: Bengaluru, Chennai, Hyderabad. Growth markets: Mysuru, Coimbatore, Vijayawada.
-        </p>
       </div>
 
-      <div class="content-box auth-box" id="login-signup">
+      <div class="card login-card" id="login">
         <h3>Login / Sign Up</h3>
-        <p>Create your Saral account to manage subscriptions, delivery schedules, and family packs.</p>
+        <p>Create an account to manage subscriptions and find Saral stores near you.</p>
 
-        <form onsubmit="event.preventDefault(); alert('Welcome to Saral Protein Atta+!');">
+        <form onsubmit="handleLogin(event)">
           <input type="text" placeholder="Full Name" required />
           <input type="email" placeholder="Email Address" required />
           <input type="password" placeholder="Password" required />
           <button type="submit">Continue to Saral</button>
         </form>
+
+        <div class="location-panel" id="locationPanel">
+          <h4>Choose your location</h4>
+          <p>Select a city to see demo Saral stores nearby.</p>
+
+          <select id="citySelect">
+            <option value="">Select your city</option>
+            <option value="bengaluru">Bengaluru</option>
+            <option value="chennai">Chennai</option>
+            <option value="hyderabad">Hyderabad</option>
+            <option value="mysuru">Mysuru</option>
+            <option value="coimbatore">Coimbatore</option>
+            <option value="vijayawada">Vijayawada</option>
+          </select>
+
+          <button onclick="findStores()">Find Saral Stores Nearby</button>
+        </div>
       </div>
+    </div>
+
+    <div class="store-results card" id="storeResults">
+      <h3 id="storesHeading">Saral Stores Nearby</h3>
+      <iframe class="map-frame" id="storeMap" loading="lazy"></iframe>
+      <div class="store-list" id="storeList"></div>
     </div>
   </section>
 
   <footer>
-    <p>© 2026 Make Your Life Saral · Saral Protein Atta+ · Everyday protein for Indian families.</p>
+    © 2026 Make Your Life Saral · Everyday products for Indian families.
   </footer>
+
+  <script>
+    const products = {
+      dairy: [
+        {
+          name: "Saral Milk",
+          type: "Fresh Dairy",
+          image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=900&q=80",
+          description: "Everyday milk for tea, breakfast and family nutrition.",
+          packs: ["500 ml", "1 L", "2 L"]
+        },
+        {
+          name: "Saral Buttermilk",
+          type: "Refreshing Dairy Drink",
+          image: "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=900&q=80",
+          description: "Spiced and plain buttermilk for everyday refreshment.",
+          packs: ["200 ml", "500 ml", "1 L"]
+        },
+        {
+          name: "Saral Curd",
+          type: "Set & Fresh Curd",
+          image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80",
+          description: "Thick curd for meals, raita and everyday cooking.",
+          packs: ["200 g", "400 g", "1 kg"]
+        },
+        {
+          name: "Saral Ice Cream",
+          type: "Frozen Dessert",
+          image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=80",
+          description: "Classic family flavours for every celebration.",
+          packs: ["100 ml", "500 ml", "1 L"]
+        }
+      ],
+
+      snacks: [
+        {
+          name: "Saral Biscuits",
+          type: "Tea-Time Snack",
+          image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=900&q=80",
+          description: "Crisp everyday biscuits for tea and tiffin breaks.",
+          packs: ["50 g", "100 g", "250 g"]
+        },
+        {
+          name: "Saral Chips",
+          type: "Crunchy Snack",
+          image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=900&q=80",
+          description: "Classic salted and masala chips.",
+          packs: ["30 g", "75 g", "150 g"]
+        },
+        {
+          name: "Saral Namkeen",
+          type: "Indian Savoury",
+          image: "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=900&q=80",
+          description: "Mixtures and savoury snacks for family sharing.",
+          packs: ["50 g", "200 g", "400 g"]
+        },
+        {
+          name: "Saral Cookies",
+          type: "Baked Treat",
+          image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=80",
+          description: "Butter, choco-chip and oat cookie varieties.",
+          packs: ["75 g", "150 g", "300 g"]
+        }
+      ],
+
+      beverages: [
+        {
+          name: "Saral Cola",
+          type: "Carbonated Beverage",
+          image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=900&q=80",
+          description: "Classic cola and zero-sugar cola options.",
+          packs: ["250 ml", "600 ml", "1.25 L"]
+        },
+        {
+          name: "Saral Fruit Drinks",
+          type: "Mango · Orange · Mixed Fruit",
+          image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&w=900&q=80",
+          description: "Fruit drink range for school, travel and family meals.",
+          packs: ["200 ml", "600 ml", "1 L"]
+        }
+      ],
+
+      atta: [
+        {
+          name: "Saral Normal Atta",
+          type: "Everyday Wheat Atta",
+          image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80",
+          description: "Soft rotis and dependable everyday family cooking.",
+          packs: ["1 kg", "5 kg", "10 kg"]
+        },
+        {
+          name: "Saral Protein Atta+",
+          type: "16g Protein per 100g",
+          image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=900&q=80",
+          description: "High-protein atta designed for familiar everyday rotis.",
+          packs: ["1 kg", "5 kg", "10 kg"]
+        }
+      ]
+    };
+
+    const stores = {
+      bengaluru: {
+        map: "Bengaluru, Karnataka",
+        outlets: [
+          ["Saral Family Store – Indiranagar", "100 Feet Road, Indiranagar, Bengaluru, Karnataka"],
+          ["Saral Nutrition Corner – HSR Layout", "27th Main Road, HSR Layout, Bengaluru, Karnataka"]
+        ]
+      },
+      chennai: {
+        map: "Chennai, Tamil Nadu",
+        outlets: [
+          ["Saral Family Store – T. Nagar", "Usman Road, T. Nagar, Chennai, Tamil Nadu"],
+          ["Saral Nutrition Corner – Velachery", "Velachery Main Road, Chennai, Tamil Nadu"]
+        ]
+      },
+      hyderabad: {
+        map: "Hyderabad, Telangana",
+        outlets: [
+          ["Saral Family Store – Banjara Hills", "Road No. 12, Banjara Hills, Hyderabad, Telangana"],
+          ["Saral Nutrition Corner – Kukatpally", "KPHB Main Road, Kukatpally, Hyderabad, Telangana"]
+        ]
+      },
+      mysuru: {
+        map: "Mysuru, Karnataka",
+        outlets: [
+          ["Saral Family Store – Kuvempunagar", "Vishwamanava Double Road, Mysuru, Karnataka"],
+          ["Saral Nutrition Corner – Gokulam", "Gokulam Main Road, Mysuru, Karnataka"]
+        ]
+      },
+      coimbatore: {
+        map: "Coimbatore, Tamil Nadu",
+        outlets: [
+          ["Saral Family Store – RS Puram", "DB Road, RS Puram, Coimbatore, Tamil Nadu"],
+          ["Saral Nutrition Corner – Peelamedu", "Avinashi Road, Peelamedu, Coimbatore, Tamil Nadu"]
+        ]
+      },
+      vijayawada: {
+        map: "Vijayawada, Andhra Pradesh",
+        outlets: [
+          ["Saral Family Store – Benz Circle", "MG Road, Benz Circle, Vijayawada, Andhra Pradesh"],
+          ["Saral Nutrition Corner – Moghalrajpuram", "Eluru Road, Moghalrajpuram, Vijayawada, Andhra Pradesh"]
+        ]
+      }
+    };
+
+    function showCategory(category) {
+      document.querySelectorAll(".tab").forEach(tab => {
+        tab.classList.toggle("active", tab.dataset.category === category);
+      });
+
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = products[category].map(product => `
+        <article class="product-card">
+          <img src="${product.image}" alt="${product.name}" />
+          <div class="product-card-content">
+            <h3>${product.name}</h3>
+            <div class="product-type">${product.type}</div>
+            <p>${product.description}</p>
+            <div class="packet-list">
+              ${product.packs.map(pack => `<span>${pack}</span>`).join("")}
+            </div>
+          </div>
+        </article>
+      `).join("");
+
+      document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      document.getElementById("locationPanel").style.display = "block";
+      alert("Welcome to Saral! Please select your location to find nearby stores.");
+    }
+
+    function findStores() {
+      const city = document.getElementById("citySelect").value;
+      const results = document.getElementById("storeResults");
+      const heading = document.getElementById("storesHeading");
+      const map = document.getElementById("storeMap");
+      const list = document.getElementById("storeList");
+
+      if (!city) {
+        alert("Please select a city first.");
+        return;
+      }
+
+      const cityData = stores[city];
+      heading.textContent = `Saral Stores Near You – ${cityData.map}`;
+      map.src = `https://www.google.com/maps?q=${encodeURIComponent(cityData.map)}&output=embed`;
+
+      list.innerHTML = cityData.outlets.map(outlet => `
+        <div class="store">
+          <strong>${outlet[0]}</strong><br />
+          <span>${outlet[1]}</span><br />
+          <small>Demo outlet address — replace with verified store data before launch.</small>
+        </div>
+      `).join("");
+
+      results.style.display = "block";
+      results.scrollIntoView({ behavior: "smooth" });
+    }
+
+    showCategory("dairy");
+  </script>
 </body>
 </html>
 ```
