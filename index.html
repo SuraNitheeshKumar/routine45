@@ -113,6 +113,7 @@
             transition: transform 0.2s, box-shadow 0.2s;
             border: none;
             cursor: pointer;
+            text-align: center;
         }
 
         .btn:hover {
@@ -242,35 +243,14 @@
             margin-bottom: 15px;
         }
 
-        /* Auth Modals & Checkout Panels */
-        .auth-box, .checkout-box {
+        /* Purchase Panel */
+        .checkout-box {
             background: white;
             padding: 40px;
             border-radius: 25px;
             box-shadow: var(--card-shadow);
-            max-width: 550px;
+            max-width: 600px;
             margin: 30px auto;
-        }
-
-        .auth-tabs {
-            display: flex;
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--gray);
-        }
-
-        .auth-tab {
-            flex: 1;
-            padding: 12px;
-            text-align: center;
-            cursor: pointer;
-            font-weight: bold;
-            color: #aaa;
-            font-size: 16px;
-        }
-
-        .auth-tab.active {
-            color: var(--primary);
-            border-bottom: 3px solid var(--primary);
         }
 
         .form-group {
@@ -305,30 +285,31 @@
             background: #fdfaf4;
             border: 2px dashed var(--primary);
             border-radius: 12px;
-            padding: 20px;
-            margin-top: 15px;
+            padding: 24px;
+            margin-top: 20px;
             text-align: center;
             display: none;
         }
 
         .qr-placeholder-img {
-            max-width: 220px;
+            max-width: 260px;
             width: 100%;
             margin: 15px auto;
             border-radius: 8px;
             display: block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
 
         .payment-number {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             color: var(--secondary);
             background: #eef7ee;
-            padding: 5px 12px;
+            padding: 6px 16px;
             border-radius: 6px;
             display: inline-block;
             margin-top: 5px;
+            letter-spacing: 0.5px;
         }
 
         /* Pricing & Infrastructure Map Design */
@@ -367,7 +348,7 @@
             <a href="#how-it-helps">How AI Helps</a>
             <a href="#elder-stories">Success Stories</a>
             <a href="#pricing-tier">Packages</a>
-            <a href="#direct-buy">Buy Directly</a>
+            <a href="#direct-buy">Purchase Now</a>
             <a href="#locator-tier">Service Centers</a>
         </nav>
     </header>
@@ -379,7 +360,7 @@
         <p>Aura Care AI integrates non-invasive smart ambient home tracking elements with responsive agentic models[cite: 1]. We decode continuous real-time routine anomalies to dispatch immediate help coordinates before traditional reactive wearables can even sound an alarm[cite: 1].</p>
         <div>
             <a href="#direct-buy" class="btn">Order Setup Package</a>
-            <a href="#locator-tier" class="btn btn-alt">Find Nearest Core Node</a>
+            <a href="#locator-tier" class="btn btn-alt">Find Nearest Support Hub</a>
         </div>
     </section>
 
@@ -516,7 +497,7 @@
 
     <!-- Subscription Architecture Section -->
     <section class="section" style="background-color: var(--gray);" id="pricing-tier">
-        <h2 class="section-title">Subscription Architecture</h2>
+        <h2 class="section-title">Subscription Packages</h2>
         <p class="section-subtitle">Simple, direct, and aligned with unit economics frameworks provided inside our product development blueprints[cite: 1].</p>
         
         <div class="pricing-grid">
@@ -532,7 +513,7 @@
                         <li>DPDP Act Compliant Secure Data Vault[cite: 1]</li>
                     </ul>
                 </div>
-                <a href="#direct-buy" class="btn">Select Package</a>
+                <button class="btn" onclick="selectPlan('monthly')">Select & Purchase</button>
             </div>
 
             <div class="price-card" style="border: 2px solid var(--primary);">
@@ -541,38 +522,38 @@
                     <div class="price-amount">₹14,999 <span>/ Year</span></div>
                     <div class="hardware-fee" style="background: #fcefe7; color: var(--primary);">+ Discounted Hardware Installation: ₹10,000</div>
                     <ul class="features-list">
-                        <li><strong>Includes 2 Months of Complementary Core Platform Access</strong></li>
+                        <li><strong>Includes 2 Months of Complementary Platform Access</strong></li>
                         <li>All features found under standard recurring access structure[cite: 1]</li>
                         <li>Priority Multi-City Field Deployment privileges</li>
                         <li>Free Bi-annual Sensor Calibration & Health Checkups</li>
                     </ul>
                 </div>
-                <a href="#direct-buy" class="btn">Select Package</a>
+                <button class="btn" onclick="selectPlan('annual')">Select & Purchase</button>
             </div>
         </div>
     </section>
 
     <!-- Direct Purchase Checkout Form Panel -->
     <section class="section" id="direct-buy" style="background-color: #ffffff;">
-        <h2 class="section-title">Instant Order Checkout</h2>
-        <p class="section-subtitle">Enter your delivery details below to order your hardware kit and initiate your protective AI subscription[cite: 1].</p>
+        <h2 class="section-title">Instant Order Checkout Portal</h2>
+        <p class="section-subtitle">Fill in your deployment details below, select your preferred transaction method, and secure your system[cite: 1].</p>
         
         <div class="checkout-box">
             <form id="purchaseForm" onsubmit="processDirectOrder(event)">
                 <div class="form-group">
-                    <label for="buyerName">Recipient/Customer Full Name</label>
+                    <label for="buyerName">Recipient / Customer Full Name</label>
                     <input type="text" id="buyerName" required placeholder="Enter name">
                 </div>
                 <div class="form-group">
-                    <label for="buyerPhone">Mobile Number (For Support updates)</label>
+                    <label for="buyerPhone">Mobile Number (For installation logistics updates)</label>
                     <input type="tel" id="buyerPhone" required placeholder="10-digit mobile number">
                 </div>
                 <div class="form-group">
-                    <label for="shippingAddress">Delivery / Installation Address</label>
-                    <textarea id="shippingAddress" rows="3" required placeholder="Complete home address where sensors will be deployed"></textarea>
+                    <label for="shippingAddress">Delivery & Installation Address</label>
+                    <textarea id="shippingAddress" rows="3" required placeholder="Complete residential address where sensors will be deployed"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="selectedTier">Choose Ecosystem Plan</label>
+                    <label for="selectedTier">Chosen Ecosystem Plan</label>
                     <select id="selectedTier" required onchange="updateCheckoutTotal()">
                         <option value="monthly">Monthly Access Tier (₹12,000 Setup + ₹1,499/mo First Month)</option>
                         <option value="annual">Annual Protection Tier (₹10,000 Setup + ₹14,999 Annual Fee)</option>
@@ -583,47 +564,51 @@
                     Total Payable Amount: <span id="checkoutTotalDisplay">₹13,499</span>
                 </div>
 
-                <!-- Payment Options System -->
+                <!-- Payment Method Configuration: COD and UPI Option -->
                 <div class="form-group">
-                    <label for="paymentMethod">Select Payment Mode</label>
+                    <label for="paymentMethod">Select Payment Method</label>
                     <select id="paymentMethod" required onchange="togglePaymentUIVisibility()">
-                        <option value="cod">Cash on Delivery (COD) / Pay on Installation</option>
-                        <option value="upi">Instant UPI Transfer (Pre-payment)</option>
+                        <option value="cod">Cash on Delivery (COD) / Pay on Setup</option>
+                        <option value="upi">Instant UPI Payment Transfer (Pre-payment QR)</option>
                     </select>
                 </div>
 
-                <!-- Hidden UPI Container with Number and QR Attachment Reference -->
+                <!-- QR Code & Phone Number Payment Box -->
                 <div class="upi-payment-details" id="upiPaymentBox">
                     <p style="font-size: 14px; font-weight: 600; color: #444;">
-                        Please scan the official merchant QR below or transfer directly to the linked account number:
+                        Scan the official dynamic merchant PhonePe QR code to complete transfer:
+                    </p>
+                    
+                    <!-- Reference to upload file: WhatsApp Image 2026-07-02 at 5.21.49 PM_2.jpeg -->
+                    <img src="WhatsApp Image 2026-07-02 at 5.21.49 PM_2.jpeg" alt="Aura Care AI merchant pay QR code" class="qr-placeholder-img">
+                    
+                    <p style="font-size: 14px; color: #333; margin-top: 5px;">
+                        Or pay directly to registered payment phone link number:
                     </p>
                     <div class="payment-number">9392045827</div>
                     
-                    <!-- Reference to user provided QR filename source -->
-                    <img src="WhatsApp Image 2026-07-02 at 5.21.49 PM.jpeg" alt="Aura Care AI UPI payment QR Code" class="qr-placeholder-img">
-                    
-                    <p style="font-size: 12px; color: #666; font-style: italic; margin-top: 10px;">
-                        Once processed, money will be directly debited to our secure State Bank merchant gateway. Please enter your Transaction Ref ID below.
+                    <p style="font-size: 12px; color: #666; font-style: italic; margin-top: 15px;">
+                        Funds will be securely debited to the State Bank account ending in 3507. Please enter the Transaction Reference ID below once paid.
                     </p>
                     <div class="form-group" style="margin-top: 15px; text-align: left;">
-                        <label for="upiRefId" style="font-size: 12px;">UPI Transaction ID / Reference Code</label>
+                        <label for="upiRefId" style="font-size: 12px; font-weight: 700;">UPI Ref/UTR Number (12 Digits)</label>
                         <input type="text" id="upiRefId" placeholder="e.g., 6123XXXXXXXX">
                     </div>
                 </div>
 
-                <!-- Geolocation Trigger inside Order Process -->
+                <!-- GPS Location Permission Field -->
                 <div class="form-group" style="background: #fbfbfb; border: 1px solid var(--gray); padding: 15px; border-radius: 12px; margin-top: 25px;">
                     <p style="font-size: 13px; font-weight:700; margin-bottom: 8px; color: var(--secondary)">
-                        📌 Precise Installation Geolocation Verification
+                        📌 Location Permission Verification
                     </p>
                     <button type="button" class="btn" style="padding: 10px 15px; font-size: 12px; width: 100%;" onclick="requestMapLocation()">
-                        Attach GPS Coordinates for Technicians
+                        Attach GPS Coordinates for Verification
                     </button>
                     <input type="hidden" id="orderGeoCoordinates">
                     <p id="locationStatus" style="font-size:12px; margin-top:8px; color:#555; text-align:center; font-style:italic;"></p>
                 </div>
 
-                <button type="submit" class="btn" style="width: 100%; margin-top: 15px; font-size: 18px;">Place Your Order</button>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 15px; font-size: 18px;">Confirm and Purchase</button>
             </form>
         </div>
     </section>
@@ -648,27 +633,35 @@
 
     <!-- Script mechanics logic engine -->
     <script>
+        // Trigger automated checkout scroll state
+        function selectPlan(planType) {
+            document.getElementById('selectedTier').value = planType;
+            updateCheckoutTotal();
+            window.location.hash = '#direct-buy';
+        }
+
         // Adjust calculated checkout total displays
         function updateCheckoutTotal() {
             const planSelection = document.getElementById('selectedTier').value;
             const display = document.getElementById('checkoutTotalDisplay');
             if (planSelection === 'monthly') {
-                display.innerText = "₹13,499"; // 12,000 + 1,499
+                display.innerText = "₹13,499"; 
             } else {
-                display.innerText = "₹24,999"; // 10,000 + 14,999
+                display.innerText = "₹24,999"; 
             }
         }
 
-        // Toggle payment presentation dynamically based on checkout choice
+        // Toggle payment visibility dynamically based on checkout choice
         function togglePaymentUIVisibility() {
             const selection = document.getElementById('paymentMethod').value;
             const upiBox = document.getElementById('upiPaymentBox');
+            const upiInput = document.getElementById('upiRefId');
             if (selection === 'upi') {
                 upiBox.style.display = 'block';
-                document.getElementById('upiRefId').setAttribute('required', 'true');
+                upiInput.setAttribute('required', 'true');
             } else {
                 upiBox.style.display = 'none';
-                document.getElementById('upiRefId').removeAttribute('required');
+                upiInput.removeAttribute('required');
             }
         }
 
@@ -679,12 +672,12 @@
             const selection = document.getElementById('paymentMethod').value;
             const total = document.getElementById('checkoutTotalDisplay').innerText;
             
-            let message = `Success! Order recorded for ${customer}. Total: ${total}. \n`;
+            let message = `Success! Order logged for ${customer}.\nTotal Billable Amount: ${total}.\n\n`;
             if (selection === 'cod') {
-                message += "Your configuration will be processed as Cash on Delivery. Payment will be collected during physical smart ecosystem deployment.";
+                message += "Your configuration is scheduled under Cash on Delivery. Payment will be fulfilled locally on hardware deployment.";
             } else {
                 const ref = document.getElementById('upiRefId').value;
-                message += `UPI Pre-payment linked successfully under Reference ID: ${ref}. Verification details dispatched to merchant registry number 9392045827.`;
+                message += `UPI Pre-payment Transaction ID noted: ${ref}.\nThe transaction receipt will be checked by our administration at 9392045827 before shipping details are finalized.`;
             }
             alert(message);
         }
@@ -692,7 +685,7 @@
         // Location verification engine
         function requestMapLocation() {
             const status = document.getElementById('locationStatus');
-            status.innerText = "Querying device network hardware context...";
+            status.innerText = "Querying device network position context...";
 
             if (!navigator.geolocation) {
                 status.innerText = "HTML5 positioning modules not supported by this browser engine.";
@@ -704,14 +697,14 @@
                     const lat = position.coords.latitude.toFixed(5);
                     const lng = position.coords.longitude.toFixed(5);
                     document.getElementById('orderGeoCoordinates').value = `${lat},${lng}`;
-                    status.innerHTML = `✅ Location Attached: <strong>Lat ${lat}, Lng ${lng}</strong>`;
+                    status.innerHTML = `✅ Location Verified: <strong>Lat ${lat}, Lng ${lng}</strong>`;
                     
                     const banner = document.getElementById('geoBanner');
                     banner.style.display = "block";
                     banner.innerHTML = `📍 Order Tracking: Nearest service dispatch hub prioritized for coordinate point: [Lat: ${lat}, Lng: ${lng}].`;
                 },
                 (error) => {
-                    status.innerText = "Location permission request declined. Enter city name manually below.";
+                    status.innerText = "Location access permission denied. Enter city name manually below.";
                 }
             );
         }
