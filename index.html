@@ -242,13 +242,13 @@
             margin-bottom: 15px;
         }
 
-        /* Auth Modals */
-        .auth-box {
+        /* Auth Modals & Checkout Panels */
+        .auth-box, .checkout-box {
             background: white;
             padding: 40px;
             border-radius: 25px;
             box-shadow: var(--card-shadow);
-            max-width: 480px;
+            max-width: 550px;
             margin: 30px auto;
         }
 
@@ -286,7 +286,7 @@
             color: #444;
         }
 
-        .form-group input {
+        .form-group input, .form-group select, .form-group textarea {
             width: 100%;
             padding: 12px 16px;
             border: 2px solid var(--gray);
@@ -296,8 +296,39 @@
             transition: border-color 0.3s;
         }
 
-        .form-group input:focus {
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             border-color: var(--primary);
+        }
+
+        /* Payment QR Details UI */
+        .upi-payment-details {
+            background: #fdfaf4;
+            border: 2px dashed var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+        }
+
+        .qr-placeholder-img {
+            max-width: 220px;
+            width: 100%;
+            margin: 15px auto;
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .payment-number {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--secondary);
+            background: #eef7ee;
+            padding: 5px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 5px;
         }
 
         /* Pricing & Infrastructure Map Design */
@@ -336,8 +367,8 @@
             <a href="#how-it-helps">How AI Helps</a>
             <a href="#elder-stories">Success Stories</a>
             <a href="#pricing-tier">Packages</a>
+            <a href="#direct-buy">Buy Directly</a>
             <a href="#locator-tier">Service Centers</a>
-            <a href="#identity-node" class="btn" style="padding: 9px 24px; font-size: 14px;">Sign In</a>
         </nav>
     </header>
 
@@ -347,7 +378,7 @@
         <div class="tagline">“Not Just Monitoring Boundaries. Anticipating Human Needs Everywhere.”[cite: 1]</div>
         <p>Aura Care AI integrates non-invasive smart ambient home tracking elements with responsive agentic models[cite: 1]. We decode continuous real-time routine anomalies to dispatch immediate help coordinates before traditional reactive wearables can even sound an alarm[cite: 1].</p>
         <div>
-            <a href="#identity-node" class="btn">Configure Guardian Access</a>
+            <a href="#direct-buy" class="btn">Order Setup Package</a>
             <a href="#locator-tier" class="btn btn-alt">Find Nearest Core Node</a>
         </div>
     </section>
@@ -357,7 +388,6 @@
         <h2 class="section-title">The Silver Economy: Senior Healthcare Trends in India</h2>
         <p class="section-subtitle">Key macroeconomic indicators and growth data shifts showing the critical demand for specialized independent senior living technologies across India[cite: 1].</p>
         
-        <!-- Primary Metrics Row -->
         <div class="grid-4" style="margin-bottom: 45px;">
             <div class="stat-card">
                 <div class="stat-num">₹138 Bn</div>
@@ -377,9 +407,7 @@
             </div>
         </div>
 
-        <!-- Analytical Context Grid -->
         <div class="grid-2">
-            <!-- Fact Stack Column -->
             <div>
                 <div class="fact-box">
                     <strong>📈 Steepening Aging Curve Projections</strong>
@@ -395,7 +423,6 @@
                 </div>
             </div>
 
-            <!-- Device Mix & Technology Stack Graph Placement Info -->
             <div style="background: white; padding: 35px; border-radius: 20px; box-shadow: var(--card-shadow);">
                 <h4 style="margin-bottom: 20px; color: var(--secondary); font-size: 18px;">Indian AI Device Adoption Demographics (2024 Mix)[cite: 1]</h4>
                 <div style="display: flex; flex-direction: column; gap: 12px;">
@@ -420,12 +447,11 @@
                         <div style="background:var(--gray); height:8px; border-radius:4px;"><div style="background:var(--accent-orange); width:12%; height:100%; border-radius:4px;"></div></div>
                     </div>
                 </div>
-                <p style="margin-top: 25px; font-size: 13px; color:#666; font-style: italic;">Data Source Context: India Senior Health Market AI Penetration Index Models[cite: 1].</p>
             </div>
         </div>
     </section>
 
-    <!-- Dynamic System Help Interface (How Our Product Is Helping Them) -->
+    <!-- Dynamic System Help Interface -->
     <section class="section" id="how-it-helps">
         <h2 class="section-title">How Aura Care AI Solves the Eldercare Challenge</h2>
         <p class="section-subtitle">Bridging the gap between active independent aging and absolute preventative safety through agentic machine reasoning[cite: 1].</p>
@@ -488,49 +514,7 @@
         </div>
     </section>
 
-    <!-- Identity / Onboarding Workspace Component -->
-    <section class="section" id="identity-node">
-        <h2 class="section-title">Access the Guardian Interface</h2>
-        <p class="section-subtitle">Register new sensor units, link family members, or manage your monitoring alerts[cite: 1].</p>
-        
-        <div class="auth-box">
-            <div class="auth-tabs">
-                <div class="auth-tab active" id="tab-login" onclick="toggleAuth('login')">Dashboard Sign In</div>
-                <div class="auth-tab" id="tab-signup" onclick="toggleAuth('signup')">New Activation</div>
-            </div>
-
-            <form id="authForm" onsubmit="handleAuthSubmit(event)">
-                <div class="form-group" id="name-group" style="display: none;">
-                    <label for="userName">Full Name</label>
-                    <input type="text" id="userName" placeholder="Guardian / Account Owner Name">
-                </div>
-                <div class="form-group">
-                    <label for="userEmail">Registered Email</label>
-                    <input type="email" id="userEmail" required placeholder="name@domain.com">
-                </div>
-                <div class="form-group">
-                    <label for="userPassword">Security Token Password</label>
-                    <input type="password" id="userPassword" required placeholder="••••••••">
-                </div>
-
-                <!-- Geolocation Capture Block -->
-                <div class="form-group" style="background: var(--gray); padding: 18px; border-radius: 12px; margin-top: 25px;">
-                    <p style="font-size: 13px; font-weight:700; margin-bottom: 8px; color: var(--secondary)">
-                        📌 Link Emergency Response Coordinates
-                    </p>
-                    <button type="button" class="btn" style="padding: 10px 15px; font-size: 12px; width: 100%;" onclick="requestMapLocation()">
-                        Retrieve Hardware Deployment Location
-                    </button>
-                    <input type="hidden" id="geoCoordinates">
-                    <p id="locationStatus" style="font-size:12px; margin-top:8px; color:#555; text-align:center; font-style:italic;"></p>
-                </div>
-
-                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;" id="authSubmitBtn">Initialize Ecosystem Dashboard</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Subscription Models -->
+    <!-- Subscription Architecture Section -->
     <section class="section" style="background-color: var(--gray);" id="pricing-tier">
         <h2 class="section-title">Subscription Architecture</h2>
         <p class="section-subtitle">Simple, direct, and aligned with unit economics frameworks provided inside our product development blueprints[cite: 1].</p>
@@ -548,7 +532,7 @@
                         <li>DPDP Act Compliant Secure Data Vault[cite: 1]</li>
                     </ul>
                 </div>
-                <button class="btn" onclick="alert('Redirecting to secure subscription gateway...')">Activate Monthly Coverage</button>
+                <a href="#direct-buy" class="btn">Select Package</a>
             </div>
 
             <div class="price-card" style="border: 2px solid var(--primary);">
@@ -563,13 +547,89 @@
                         <li>Free Bi-annual Sensor Calibration & Health Checkups</li>
                     </ul>
                 </div>
-                <button class="btn" onclick="alert('Redirecting to secure subscription gateway...')">Activate Annual Protection</button>
+                <a href="#direct-buy" class="btn">Select Package</a>
             </div>
         </div>
     </section>
 
-    <!-- Multi-City Metro Area Support Infrastructure Finder -->
-    <section class="section" id="locator-tier">
+    <!-- Direct Purchase Checkout Form Panel -->
+    <section class="section" id="direct-buy" style="background-color: #ffffff;">
+        <h2 class="section-title">Instant Order Checkout</h2>
+        <p class="section-subtitle">Enter your delivery details below to order your hardware kit and initiate your protective AI subscription[cite: 1].</p>
+        
+        <div class="checkout-box">
+            <form id="purchaseForm" onsubmit="processDirectOrder(event)">
+                <div class="form-group">
+                    <label for="buyerName">Recipient/Customer Full Name</label>
+                    <input type="text" id="buyerName" required placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <label for="buyerPhone">Mobile Number (For Support updates)</label>
+                    <input type="tel" id="buyerPhone" required placeholder="10-digit mobile number">
+                </div>
+                <div class="form-group">
+                    <label for="shippingAddress">Delivery / Installation Address</label>
+                    <textarea id="shippingAddress" rows="3" required placeholder="Complete home address where sensors will be deployed"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="selectedTier">Choose Ecosystem Plan</label>
+                    <select id="selectedTier" required onchange="updateCheckoutTotal()">
+                        <option value="monthly">Monthly Access Tier (₹12,000 Setup + ₹1,499/mo First Month)</option>
+                        <option value="annual">Annual Protection Tier (₹10,000 Setup + ₹14,999 Annual Fee)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" style="background: var(--gray); padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; font-size: 18px; color: var(--secondary);">
+                    Total Payable Amount: <span id="checkoutTotalDisplay">₹13,499</span>
+                </div>
+
+                <!-- Payment Options System -->
+                <div class="form-group">
+                    <label for="paymentMethod">Select Payment Mode</label>
+                    <select id="paymentMethod" required onchange="togglePaymentUIVisibility()">
+                        <option value="cod">Cash on Delivery (COD) / Pay on Installation</option>
+                        <option value="upi">Instant UPI Transfer (Pre-payment)</option>
+                    </select>
+                </div>
+
+                <!-- Hidden UPI Container with Number and QR Attachment Reference -->
+                <div class="upi-payment-details" id="upiPaymentBox">
+                    <p style="font-size: 14px; font-weight: 600; color: #444;">
+                        Please scan the official merchant QR below or transfer directly to the linked account number:
+                    </p>
+                    <div class="payment-number">9392045827</div>
+                    
+                    <!-- Reference to user provided QR filename source -->
+                    <img src="WhatsApp Image 2026-07-02 at 5.21.49 PM.jpeg" alt="Aura Care AI UPI payment QR Code" class="qr-placeholder-img">
+                    
+                    <p style="font-size: 12px; color: #666; font-style: italic; margin-top: 10px;">
+                        Once processed, money will be directly debited to our secure State Bank merchant gateway. Please enter your Transaction Ref ID below.
+                    </p>
+                    <div class="form-group" style="margin-top: 15px; text-align: left;">
+                        <label for="upiRefId" style="font-size: 12px;">UPI Transaction ID / Reference Code</label>
+                        <input type="text" id="upiRefId" placeholder="e.g., 6123XXXXXXXX">
+                    </div>
+                </div>
+
+                <!-- Geolocation Trigger inside Order Process -->
+                <div class="form-group" style="background: #fbfbfb; border: 1px solid var(--gray); padding: 15px; border-radius: 12px; margin-top: 25px;">
+                    <p style="font-size: 13px; font-weight:700; margin-bottom: 8px; color: var(--secondary)">
+                        📌 Precise Installation Geolocation Verification
+                    </p>
+                    <button type="button" class="btn" style="padding: 10px 15px; font-size: 12px; width: 100%;" onclick="requestMapLocation()">
+                        Attach GPS Coordinates for Technicians
+                    </button>
+                    <input type="hidden" id="orderGeoCoordinates">
+                    <p id="locationStatus" style="font-size:12px; margin-top:8px; color:#555; text-align:center; font-style:italic;"></p>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; margin-top: 15px; font-size: 18px;">Place Your Order</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Multi-City Support Infrastructure Finder -->
+    <section class="section" style="background-color: var(--gray);" id="locator-tier">
         <h2 class="section-title">Locate a Nearby Support Hub</h2>
         <div class="locator-container">
             <div class="location-banner" id="geoBanner"></div>
@@ -588,28 +648,48 @@
 
     <!-- Script mechanics logic engine -->
     <script>
-        let currentMode = 'login';
-
-        function toggleAuth(mode) {
-            currentMode = mode;
-            document.getElementById('tab-login').classList.toggle('active', mode === 'login');
-            document.getElementById('tab-signup').classList.toggle('active', mode === 'signup');
-            document.getElementById('name-group').style.display = mode === 'signup' ? 'block' : 'none';
-            document.getElementById('authSubmitBtn').innerText = mode === 'signup' ? 'Create Care Profile' : 'Initialize Ecosystem Dashboard';
-        }
-
-        function handleAuthSubmit(event) {
-            event.preventDefault();
-            const email = document.getElementById('userEmail').value;
-            const coords = document.getElementById('geoCoordinates').value;
-            let feedback = `Access initialized for: ${email}`;
-            if(currentMode === 'signup') {
-                feedback = `Ecosystem profile registered for: ${email}.`;
-                if(coords) feedback += ` Linked Response coordinates: [${coords}]`;
+        // Adjust calculated checkout total displays
+        function updateCheckoutTotal() {
+            const planSelection = document.getElementById('selectedTier').value;
+            const display = document.getElementById('checkoutTotalDisplay');
+            if (planSelection === 'monthly') {
+                display.innerText = "₹13,499"; // 12,000 + 1,499
+            } else {
+                display.innerText = "₹24,999"; // 10,000 + 14,999
             }
-            alert(feedback);
         }
 
+        // Toggle payment presentation dynamically based on checkout choice
+        function togglePaymentUIVisibility() {
+            const selection = document.getElementById('paymentMethod').value;
+            const upiBox = document.getElementById('upiPaymentBox');
+            if (selection === 'upi') {
+                upiBox.style.display = 'block';
+                document.getElementById('upiRefId').setAttribute('required', 'true');
+            } else {
+                upiBox.style.display = 'none';
+                document.getElementById('upiRefId').removeAttribute('required');
+            }
+        }
+
+        // Manage Order Flow Submission
+        function processDirectOrder(event) {
+            event.preventDefault();
+            const customer = document.getElementById('buyerName').value;
+            const selection = document.getElementById('paymentMethod').value;
+            const total = document.getElementById('checkoutTotalDisplay').innerText;
+            
+            let message = `Success! Order recorded for ${customer}. Total: ${total}. \n`;
+            if (selection === 'cod') {
+                message += "Your configuration will be processed as Cash on Delivery. Payment will be collected during physical smart ecosystem deployment.";
+            } else {
+                const ref = document.getElementById('upiRefId').value;
+                message += `UPI Pre-payment linked successfully under Reference ID: ${ref}. Verification details dispatched to merchant registry number 9392045827.`;
+            }
+            alert(message);
+        }
+
+        // Location verification engine
         function requestMapLocation() {
             const status = document.getElementById('locationStatus');
             status.innerText = "Querying device network hardware context...";
@@ -623,12 +703,12 @@
                 (position) => {
                     const lat = position.coords.latitude.toFixed(5);
                     const lng = position.coords.longitude.toFixed(5);
-                    document.getElementById('geoCoordinates').value = `${lat},${lng}`;
-                    status.innerHTML = `✅ Location Verified: <strong>Lat ${lat}, Lng ${lng}</strong>`;
+                    document.getElementById('orderGeoCoordinates').value = `${lat},${lng}`;
+                    status.innerHTML = `✅ Location Attached: <strong>Lat ${lat}, Lng ${lng}</strong>`;
                     
                     const banner = document.getElementById('geoBanner');
                     banner.style.display = "block";
-                    banner.innerHTML = `📍 Browser Geolocation confirmed. Nearest field dispatch center prioritized for coordinates: [Lat: ${lat}, Lng: ${lng}].`;
+                    banner.innerHTML = `📍 Order Tracking: Nearest service dispatch hub prioritized for coordinate point: [Lat: ${lat}, Lng: ${lng}].`;
                 },
                 (error) => {
                     status.innerText = "Location permission request declined. Enter city name manually below.";
