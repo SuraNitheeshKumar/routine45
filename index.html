@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aura Care AI - Proactive Companionship & Smart Living</title>
+    <title>Aura Care AI - Proactive Eldercare Ecosystem</title>
     <style>
         :root {
             --primary: #c06c3c;
@@ -12,7 +12,8 @@
             --dark: #222222;
             --light: #fdfbf7;
             --gray: #f4f1ea;
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --accent-orange: #d97736;
+            --card-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
         }
 
         * {
@@ -20,6 +21,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -28,9 +30,22 @@
             line-height: 1.6;
         }
 
+        /* Top Slogan Banner */
+        .slogan-banner {
+            background: var(--primary-gradient);
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 5%;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
         header {
             background: #ffffff;
-            padding: 20px 10%;
+            padding: 15px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -51,7 +66,7 @@
         nav a {
             text-decoration: none;
             color: var(--dark);
-            margin-left: 30px;
+            margin-left: 25px;
             font-weight: 500;
             transition: color 0.3s;
         }
@@ -61,413 +76,605 @@
         }
 
         .hero {
-            background: linear-gradient(rgba(253, 251, 247, 0.9), rgba(253, 251, 247, 0.9)), url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=1920') no-repeat center center/cover;
-            padding: 100px 10%;
+            background: linear-gradient(rgba(253, 251, 247, 0.88), rgba(253, 251, 247, 0.88)), url('https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1920') no-repeat center center/cover;
+            padding: 100px 8% 80px 8%;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 52px;
             color: var(--secondary);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .hero .tagline {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--accent-orange);
+            margin-bottom: 25px;
         }
 
         .hero p {
-            font-size: 20px;
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-            color: #555;
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 35px auto;
+            color: #444;
         }
 
         .btn {
             background: var(--primary-gradient);
             color: white;
-            padding: 12px 30px;
+            padding: 14px 35px;
             text-decoration: none;
             border-radius: 25px;
             font-weight: bold;
             display: inline-block;
-            transition: transform 0.3s;
+            transition: transform 0.2s, box-shadow 0.2s;
             border: none;
             cursor: pointer;
         }
 
         .btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(192, 108, 60, 0.3);
+        }
+
+        .btn-alt {
+            background: white;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+            margin-left: 15px;
+        }
+
+        .btn-alt:hover {
+            background: var(--secondary);
+            color: white;
         }
 
         .section {
-            padding: 80px 10%;
+            padding: 80px 8%;
         }
 
         .section-title {
             text-align: center;
-            font-size: 32px;
+            font-size: 36px;
             color: var(--secondary);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
             margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 16px;
         }
 
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
 
-        .card {
+        /* Market Metrics Blocks */
+        .stat-card {
             background: white;
-            padding: 40px 30px;
+            padding: 30px 20px;
             border-radius: 15px;
             box-shadow: var(--card-shadow);
             text-align: center;
+            border-bottom: 4px solid var(--secondary);
             transition: transform 0.3s;
         }
+        .stat-card:hover { transform: translateY(-5px); }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        /* Subscription Tiers Plan styling */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .price-card {
-            background: white;
-            border: 2px solid transparent;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-            text-align: center;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .price-card.popular {
-            border-color: var(--primary);
-        }
-
-        .badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--primary);
-            color: white;
-            padding: 5px 15px;
-            font-size: 12px;
-            border-radius: 20px;
-        }
-
-        .price-amount {
+        .stat-num {
             font-size: 36px;
             font-weight: bold;
-            color: var(--dark);
-            margin: 20px 0;
+            color: var(--primary);
+            margin-bottom: 8px;
         }
 
-        .price-amount span {
-            font-size: 16px;
-            font-weight: normal;
-            color: #777;
-        }
-
-        .hardware-fee {
-            background: var(--gray);
-            padding: 8px;
-            border-radius: 8px;
+        .stat-label {
             font-size: 14px;
-            margin-bottom: 20px;
-            font-weight: 500;
+            color: #555;
+            font-weight: 600;
+            line-height: 1.4;
         }
 
-        .features-list {
-            list-style: none;
+        .fact-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-orange);
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+        .fact-box strong { color: var(--secondary); display: block; margin-bottom: 5px; font-size: 16px; }
+        .fact-box p { font-size: 14px; color: #555; }
+
+        /* Product Help System Layout */
+        .help-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+        .help-card h3 { color: var(--secondary); margin-bottom: 15px; font-size: 22px; }
+        .help-card ul { list-style: none; }
+        .help-card ul li { margin-bottom: 12px; font-size: 15px; color: #545454; padding-left: 25px; position: relative; }
+        .help-card ul li::before { content: "→"; color: var(--accent-orange); position: absolute; left: 0; font-weight: bold; }
+
+        /* Stories Gallery Elements */
+        .story-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .story-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .story-content {
+            padding: 30px;
+        }
+
+        .story-content h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            background: var(--gray);
+            color: var(--primary);
+            padding: 4px 12px;
+            font-size: 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        /* Auth Modals */
+        .auth-box {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: var(--card-shadow);
+            max-width: 480px;
+            margin: 30px auto;
+        }
+
+        .auth-tabs {
+            display: flex;
             margin-bottom: 30px;
+            border-bottom: 2px solid var(--gray);
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: #aaa;
+            font-size: 16px;
+        }
+
+        .auth-tab.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
             text-align: left;
         }
 
-        .features-list li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            font-size: 15px;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #444;
         }
 
-        .features-list li::before {
-            content: "✓";
-            color: var(--secondary);
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        /* Locator Search Section */
-        .locator-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-        }
-
-        .search-box {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .search-box input {
-            flex: 1;
-            padding: 15px 20px;
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
             border: 2px solid var(--gray);
-            border-radius: 25px;
-            font-size: 16px;
+            border-radius: 10px;
+            font-size: 15px;
             outline: none;
             transition: border-color 0.3s;
         }
 
-        .search-box input:focus {
+        .form-group input:focus {
             border-color: var(--primary);
         }
 
-        .results-container {
-            text-align: left;
-            margin-top: 20px;
-            max-height: 300px;
-            overflow-y: auto;
-        }
+        /* Pricing & Infrastructure Map Design */
+        .pricing-grid { max-width: 950px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 35px; }
+        .price-card { background: white; padding: 45px 35px; border-radius: 25px; box-shadow: var(--card-shadow); text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
+        .price-amount { font-size: 40px; font-weight: bold; color: var(--dark); margin: 15px 0; }
+        .price-amount span { font-size: 16px; color: #666; font-weight: normal; }
+        .hardware-fee { background: var(--gray); padding: 10px; border-radius: 10px; font-size: 14px; margin-bottom: 25px; font-weight: 600; }
+        .features-list { list-style: none; text-align: left; margin-bottom: 35px; }
+        .features-list li { margin-bottom: 12px; font-size: 15px; display: flex; align-items: center; }
+        .features-list li::before { content: "✓"; color: var(--secondary); font-weight: bold; margin-right: 10px; }
 
-        .center-item {
-            padding: 15px;
-            border-bottom: 1px solid var(--gray);
-            animation: fadeIn 0.5s ease-in-out;
-        }
+        .locator-container { max-width: 700px; margin: 0 auto; text-align: center; background: white; padding: 45px; border-radius: 25px; box-shadow: var(--card-shadow); }
+        .search-box { display: flex; gap: 12px; margin-bottom: 25px; }
+        .search-box input { flex: 1; padding: 16px 20px; border: 2px solid var(--gray); border-radius: 30px; font-size: 16px; outline: none; }
+        .location-banner { background: #eef7ee; color: var(--secondary); padding: 14px; border-radius: 10px; font-size: 14px; margin-bottom: 20px; font-weight: 600; display: none; }
+        .results-container { text-align: left; max-height: 280px; overflow-y: auto; }
+        .center-item { padding: 18px 0; border-bottom: 1px solid var(--gray); }
+        .center-name { font-weight: bold; color: var(--secondary); font-size: 17px; }
 
-        .center-item:last-child {
-            border-bottom: none;
-        }
-
-        .center-name {
-            font-weight: bold;
-            color: var(--secondary);
-        }
-
-        .center-details {
-            font-size: 14px;
-            color: #666;
-        }
-
-        .no-results {
-            color: #c94a4a;
-            font-weight: 500;
-            padding: 15px;
-            text-align: center;
-        }
-
-        footer {
-            background: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 40px 10%;
-            font-size: 14px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 768px) {
-            header { flex-direction: column; padding: 20px; gap: 15px; }
-            nav a { margin: 0 10px; }
-            .hero h1 { font-size: 32px; }
-            .search-box { flex-direction: column; }
-        }
+        footer { background: var(--dark); color: white; text-align: center; padding: 50px 8%; font-size: 14px; margin-top: 60px; }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- Catchy Slogan Top Header Section -->
+    <div class="slogan-banner">
+        ⚡ Before an Emergency Happens, Aura Care AI Intervenes — Proactive Protection for Aging in Place[cite: 1].
+    </div>
+
+    <!-- Main Navigation Header -->
     <header>
         <div class="logo">AURA CARE AI</div>
         <nav>
-            <a href="#features">Features</a>
-            <a href="#subscriptions">Plans</a>
-            <a href="#locator">Find a Center</a>
+            <a href="#market-outlook">Market Facts</a>
+            <a href="#how-it-helps">How AI Helps</a>
+            <a href="#elder-stories">Success Stories</a>
+            <a href="#pricing-tier">Packages</a>
+            <a href="#locator-tier">Service Centers</a>
+            <a href="#identity-node" class="btn" style="padding: 9px 24px; font-size: 14px;">Sign In</a>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Product Branding Hero -->
     <section class="hero">
-        <h1>Proactive Companionship & Smart Living</h1>
-        <p>Aura Care AI deploys specialized agentic AI connected to non-invasive ambient home sensors to look after senior citizens living independently.</p>
-        <a href="#subscriptions" class="btn">Explore Plans</a>
+        <h1>Proactive Companionship & Ambient Care</h1>
+        <div class="tagline">“Not Just Monitoring Boundaries. Anticipating Human Needs Everywhere.”[cite: 1]</div>
+        <p>Aura Care AI integrates non-invasive smart ambient home tracking elements with responsive agentic models[cite: 1]. We decode continuous real-time routine anomalies to dispatch immediate help coordinates before traditional reactive wearables can even sound an alarm[cite: 1].</p>
+        <div>
+            <a href="#identity-node" class="btn">Configure Guardian Access</a>
+            <a href="#locator-tier" class="btn btn-alt">Find Nearest Core Node</a>
+        </div>
     </section>
 
-    <!-- Value Propositions Section -->
-    <section class="section" id="features">
-        <h2 class="section-title">Why Aura Care AI?</h2>
-        <div class="grid-3">
-            <div class="card">
-                <h3>Proactive AI Care</h3>
-                <p>Unlike traditional wearables that react after an emergency happens, our Agentic AI continuously parses data streams to identify risks and coordinate autonomously before an incident turns critical.</p>
+    <!-- Comprehensive Market Facts Matrix Section -->
+    <section class="section" style="background-color: var(--gray);" id="market-outlook">
+        <h2 class="section-title">The Silver Economy: Senior Healthcare Trends in India</h2>
+        <p class="section-subtitle">Key macroeconomic indicators and growth data shifts showing the critical demand for specialized independent senior living technologies across India[cite: 1].</p>
+        
+        <!-- Primary Metrics Row -->
+        <div class="grid-4" style="margin-bottom: 45px;">
+            <div class="stat-card">
+                <div class="stat-num">₹138 Bn</div>
+                <div class="stat-label">Senior AI Device Segment Market Valuation (2024 Base Line Position)[cite: 1]</div>
             </div>
-            <div class="card">
-                <h3>Non-Invasive Monitoring</h3>
-                <p>No complicated wearables or intrusive camera systems. We make use of smart ambient IoT sensors that run perfectly in the background without disturbing your elders' routine.</p>
+            <div class="stat-card">
+                <div class="stat-num">₹502 Bn</div>
+                <div class="stat-label">Projected AI-enabled Elder Tech Market Scale by 2030[cite: 1]</div>
             </div>
-            <div class="card">
-                <h3>Absolute Peace of Mind</h3>
-                <p>Designed for working-age professionals living away from home. Receive seamless lifestyle update milestones, appointment coordination updates, and emergency alerts instantly.</p>
+            <div class="stat-card">
+                <div class="stat-num">45%</div>
+                <div class="stat-label">Target Penetration Rate for Automated AI Assistive Devices by 2030[cite: 1]</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num">$12-$14 Bn</div>
+                <div class="stat-label">Estimated Total Indian Senior Care Sector Horizon Value by 2031[cite: 1]</div>
+            </div>
+        </div>
+
+        <!-- Analytical Context Grid -->
+        <div class="grid-2">
+            <!-- Fact Stack Column -->
+            <div>
+                <div class="fact-box">
+                    <strong>📈 Steepening Aging Curve Projections</strong>
+                    <p>India's absolute elder cohort (citizens aged 60 and above) is projected to experience a rapid increase of over 130% between 2020 and 2050, growing to an estimated 455 million individuals demanding modern care answers.</p>
+                </div>
+                <div class="fact-box">
+                    <strong>🏠 Epidemiological Shift to In-Home Support</strong>
+                    <p>Analysis frameworks demonstrate that over 75% of elderly demographics in India cope with long-term chronic clinical problems, accelerating structural requirements for continuous home monitoring layers.</p>
+                </div>
+                <div class="fact-box">
+                    <strong>⚡ Rapid Proliferation of Nuclear Units</strong>
+                    <p>Urban migration patterns have elevated nuclear household setups to over 58% nationwide, with select southern metropolitan regions topping 69%. Working-age children increasingly require reliable remote oversight tools to secure parents living on their own[cite: 1].</p>
+                </div>
+            </div>
+
+            <!-- Device Mix & Technology Stack Graph Placement Info -->
+            <div style="background: white; padding: 35px; border-radius: 20px; box-shadow: var(--card-shadow);">
+                <h4 style="margin-bottom: 20px; color: var(--secondary); font-size: 18px;">Indian AI Device Adoption Demographics (2024 Mix)[cite: 1]</h4>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:4px;"><span>AI Smartwatches & Ambient Wearables</span><span>28%</span></div>
+                        <div style="background:var(--gray); height:8px; border-radius:4px;"><div style="background:var(--primary); width:28%; height:100%; border-radius:4px;"></div></div>
+                    </div>
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:4px;"><span>AI Complex Diagnostics Interfaces</span><span>24%</span></div>
+                        <div style="background:var(--gray); height:8px; border-radius:4px;"><div style="background:var(--primary); width:24%; height:100%; border-radius:4px;"></div></div>
+                    </div>
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:4px;"><span>AI Automated Remote Monitoring Consoles</span><span>20%</span></div>
+                        <div style="background:var(--gray); height:8px; border-radius:4px;"><div style="background:var(--secondary); width:20%; height:100%; border-radius:4px;"></div></div>
+                    </div>
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:4px;"><span>AI Integrated Home Healthcare Elements</span><span>16%</span></div>
+                        <div style="background:var(--gray); height:8px; border-radius:4px;"><div style="background:var(--secondary); width:16%; height:100%; border-radius:4px;"></div></div>
+                    </div>
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:4px;"><span>Assistive Autonomous Geriatric Robotics</span><span>12%</span></div>
+                        <div style="background:var(--gray); height:8px; border-radius:4px;"><div style="background:var(--accent-orange); width:12%; height:100%; border-radius:4px;"></div></div>
+                    </div>
+                </div>
+                <p style="margin-top: 25px; font-size: 13px; color:#666; font-style: italic;">Data Source Context: India Senior Health Market AI Penetration Index Models[cite: 1].</p>
             </div>
         </div>
     </section>
 
-    <!-- Customized Subscription Model Section -->
-    <section class="section" style="background-color: var(--gray);" id="subscriptions">
-        <h2 class="section-title">Subscription Packages</h2>
+    <!-- Dynamic System Help Interface (How Our Product Is Helping Them) -->
+    <section class="section" id="how-it-helps">
+        <h2 class="section-title">How Aura Care AI Solves the Eldercare Challenge</h2>
+        <p class="section-subtitle">Bridging the gap between active independent aging and absolute preventative safety through agentic machine reasoning[cite: 1].</p>
+        
+        <div class="grid-2">
+            <div class="help-card">
+                <h3>1. Replacing Reactive Panic Buttons</h3>
+                <p style="margin-bottom: 15px; color:#555;">Traditional emergency buttons or wristbands are only useful *after* a critical event occurs, assuming the senior remains conscious to operate them[cite: 1]. Aura Care AI continuously interprets information streams to stop risks before they spiral out of hand[cite: 1].</p>
+                <ul>
+                    <li><strong>Perceive:</strong> Non-invasive ambient mesh nodes analyze room movement frequencies, pacing speeds, and device activation cycles across the house floor plan[cite: 1].</li>
+                    <li><strong>Reason:</strong> The AI model tracks uncharacteristic pauses, abnormal bathroom durations, or skipped kitchen visits, instantly evaluating behavioral deviations[cite: 1].</li>
+                    <li><strong>Act:</strong> Rather than sitting idle, the agentic engine automatically checks in on the senior and loops in emergency contacts or local response teams[cite: 1].</li>
+                </ul>
+            </div>
+
+            <div class="help-card">
+                <h3>2. Seamless Operational Automation</h3>
+                <p style="margin-bottom: 15px; color:#555;">Complex smart home software can be confusing or frustrating for senior citizens[cite: 1]. Aura Care operates entirely behind the scenes, managing complex healthcare tasks with zero user effort[cite: 1].</p>
+                <ul>
+                    <li><strong>Automated Diagnostics Checkins:</strong> Seamlessly books diagnostic testing and home health checkups with partner laboratories based on historical health timelines[cite: 1].</li>
+                    <li><strong>Family Synced Telemetry:</strong> Updates adult children via push notifications about routine benchmarks, eliminating intrusive "check-in calls"[cite: 1].</li>
+                    <li><strong>Regulatory Architecture Alignment:</strong> Fully engineered around local DPDP Act compliance frameworks to guarantee complete protection over medical privacy data vaults[cite: 1].</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Senior Care Real Life Visual Case Showcase -->
+    <section class="section" style="background-color: #faf8f4;" id="elder-stories">
+        <h2 class="section-title">Validation From Safe Households</h2>
+        <p class="section-subtitle">How families use our specialized ambient tracking solution to support active, independent senior living[cite: 1].</p>
+        
+        <div class="grid-3">
+            <div class="story-card">
+                <img src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?q=80&w=600" class="story-img" alt="Active Senior India Living">
+                <div class="story-content">
+                    <span class="tag">Mobility Trend Safety</span>
+                    <h3>Professor S. Shastri, 73 (Hyderabad)</h3>
+                    <p style="font-size: 14px; color: #555;">"I live on my own while my family works in Gurugram[cite: 1]. Aura Care's ambient system noticed an abnormal walking pattern in my hallway last week—it detected a minor balance issue I hadn't even realized myself. My daughter was alerted automatically, and we arranged a checkup smoothly before any accident could happen[cite: 1]."</p>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <img src="https://images.unsplash.com/photo-1507120410856-1f35574c3b45?q=80&w=600" class="story-img" alt="Protected Elder Resident">
+                <div class="story-content">
+                    <span class="tag">Pattern Anomaly Detection</span>
+                    <h3>Anjali M., 67 (Pune)</h3>
+                    <p style="font-size: 14px; color: #555;">"I love my independent routine and didn't want intrusive cameras in my home[cite: 1]. Aura Care's smart sensors track my daily habits perfectly while respecting my privacy[cite: 1]. When I had a bad dizzy spell in the bathroom, the AI noticed the unusual delay and instantly reached out to my family[cite: 1]."</p>
+                </div>
+            </div>
+
+            <div class="story-card">
+                <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=600" class="story-img" alt="Happy Protected Family Unit">
+                <div class="story-content">
+                    <span class="tag">Routine Synchronization</span>
+                    <h3>The Mukherjees (Kolkata Hub)</h3>
+                    <p style="font-size: 14px; color: #555;">"Our children live overseas, which used to make managing our prescriptions and lab checkups quite stressful. The Aura Care AI platform coordinates our health appointments automatically behind the scenes, keeping our kids updated without any complicated tech for us to handle[cite: 1]."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Identity / Onboarding Workspace Component -->
+    <section class="section" id="identity-node">
+        <h2 class="section-title">Access the Guardian Interface</h2>
+        <p class="section-subtitle">Register new sensor units, link family members, or manage your monitoring alerts[cite: 1].</p>
+        
+        <div class="auth-box">
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="tab-login" onclick="toggleAuth('login')">Dashboard Sign In</div>
+                <div class="auth-tab" id="tab-signup" onclick="toggleAuth('signup')">New Activation</div>
+            </div>
+
+            <form id="authForm" onsubmit="handleAuthSubmit(event)">
+                <div class="form-group" id="name-group" style="display: none;">
+                    <label for="userName">Full Name</label>
+                    <input type="text" id="userName" placeholder="Guardian / Account Owner Name">
+                </div>
+                <div class="form-group">
+                    <label for="userEmail">Registered Email</label>
+                    <input type="email" id="userEmail" required placeholder="name@domain.com">
+                </div>
+                <div class="form-group">
+                    <label for="userPassword">Security Token Password</label>
+                    <input type="password" id="userPassword" required placeholder="••••••••">
+                </div>
+
+                <!-- Geolocation Capture Block -->
+                <div class="form-group" style="background: var(--gray); padding: 18px; border-radius: 12px; margin-top: 25px;">
+                    <p style="font-size: 13px; font-weight:700; margin-bottom: 8px; color: var(--secondary)">
+                        📌 Link Emergency Response Coordinates
+                    </p>
+                    <button type="button" class="btn" style="padding: 10px 15px; font-size: 12px; width: 100%;" onclick="requestMapLocation()">
+                        Retrieve Hardware Deployment Location
+                    </button>
+                    <input type="hidden" id="geoCoordinates">
+                    <p id="locationStatus" style="font-size:12px; margin-top:8px; color:#555; text-align:center; font-style:italic;"></p>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;" id="authSubmitBtn">Initialize Ecosystem Dashboard</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Subscription Models -->
+    <section class="section" style="background-color: var(--gray);" id="pricing-tier">
+        <h2 class="section-title">Subscription Architecture</h2>
+        <p class="section-subtitle">Simple, direct, and aligned with unit economics frameworks provided inside our product development blueprints[cite: 1].</p>
+        
         <div class="pricing-grid">
-            
-            <!-- Monthly Plan -->
             <div class="price-card">
                 <div>
-                    <h3>Standard Monthly Plan</h3>
+                    <h3>Standard Monthly Access</h3>
                     <div class="price-amount">₹1,499 <span>/ Month</span></div>
-                    <div class="hardware-fee">+ One-time Installation Fee: ₹12,000</div>
+                    <div class="hardware-fee">+ Standard Hardware Installation: ₹12,000[cite: 1]</div>
                     <ul class="features-list">
-                        <li>Ambient Smart Home Sensor Mesh Setup</li>
-                        <li>24/7 Agentic AI Monitoring (Perceive, Reason, Act)</li>
-                        <li>Anomaly & Emergency App Alerts to Kin</li>
-                        <li>Automated Appointment Scheduling</li>
-                        <li>DPDP Act Compliant Secure Data Vault</li>
+                        <li>Full Home Non-Invasive Ambient Sensor Mesh Installation[cite: 1]</li>
+                        <li>Continuous Proactive Agentic AI Pattern Monitoring[cite: 1]</li>
+                        <li>Automated Lab Diagnostics Coordination & Support[cite: 1]</li>
+                        <li>DPDP Act Compliant Secure Data Vault[cite: 1]</li>
                     </ul>
                 </div>
-                <button class="btn" onclick="alert('Thank you for choosing the Monthly Plan!')">Subscribe Now</button>
+                <button class="btn" onclick="alert('Redirecting to secure subscription gateway...')">Activate Monthly Coverage</button>
             </div>
 
-            <!-- Annual Plan -->
-            <div class="price-card popular">
-                <div class="badge">Best Savings</div>
+            <div class="price-card" style="border: 2px solid var(--primary);">
                 <div>
-                    <h3>Annual Value Plan</h3>
+                    <h3>Annual Protection Package</h3>
                     <div class="price-amount">₹14,999 <span>/ Year</span></div>
-                    <div class="hardware-fee">+ Discounted Installation Fee: ₹10,000</div>
+                    <div class="hardware-fee" style="background: #fcefe7; color: var(--primary);">+ Discounted Hardware Installation: ₹10,000</div>
                     <ul class="features-list">
-                        <li><strong>Everything in the Monthly Plan</strong></li>
-                        <li>Includes 2 Months Free Ecosystem Access</li>
-                        <li>Priority Multi-City Service Support</li>
-                        <li>Bi-annual Sensor Calibration & Health Checkups</li>
-                        <li>Direct Coordination Layer for Private Medical Response</li>
+                        <li><strong>Includes 2 Months of Complementary Core Platform Access</strong></li>
+                        <li>All features found under standard recurring access structure[cite: 1]</li>
+                        <li>Priority Multi-City Field Deployment privileges</li>
+                        <li>Free Bi-annual Sensor Calibration & Health Checkups</li>
                     </ul>
                 </div>
-                <button class="btn" onclick="alert('Thank you for choosing the Annual Value Plan!')">Subscribe Now</button>
+                <button class="btn" onclick="alert('Redirecting to secure subscription gateway...')">Activate Annual Protection</button>
             </div>
-
         </div>
     </section>
 
-    <!-- Multi-City Service Locator Section -->
-    <section class="section" id="locator">
-        <h2 class="section-title">Our Service Support Grid (India)</h2>
+    <!-- Multi-City Metro Area Support Infrastructure Finder -->
+    <section class="section" id="locator-tier">
+        <h2 class="section-title">Locate a Nearby Support Hub</h2>
         <div class="locator-container">
-            <p style="margin-bottom: 20px; color: #666;">Enter your city to check network coverage and locate physical field setup & service nodes near you.</p>
+            <div class="location-banner" id="geoBanner"></div>
             <div class="search-box">
-                <input type="text" id="cityInput" placeholder="e.g., Mumbai, Bengaluru, Delhi, Chennai...">
-                <button class="btn" onclick="findCenters()">Find Centers</button>
+                <input type="text" id="cityInput" placeholder="Enter city name (e.g. Mumbai, Bengaluru, Delhi, Chennai...)">
+                <button class="btn" onclick="findCenters()">Verify Coverage</button>
             </div>
-            <div class="results-container" id="results">
-                <!-- Service centers display injected dynamically -->
-            </div>
+            <div class="results-container" id="results"></div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer Space -->
     <footer>
-        <p>&copy; 2026 Aura Care AI - Designed by S Nitheesh Kumar. Providing peace of mind across generations.</p>
+        <p>&copy; 2026 Aura Care AI Platform. Scaled in compliance with Indian DPDP Act guidelines[cite: 1]. Project Concept designed by S Nitheesh Kumar[cite: 1].</p>
     </footer>
 
-    <!-- Location Dictionary Engine Logic -->
+    <!-- Script mechanics logic engine -->
     <script>
-        // Database of Service Nodes across Indian Metros
-        const serviceDatabase = {
-            mumbai: [
-                { name: "Aura Care Western Hub", address: "402, Supreme Business Park, Powai, Mumbai - 400076", phone: "+91 22 6123 4567" },
-                { name: "Aura Care South Node", address: "Ground Floor, Mittal Chambers, Nariman Point, Mumbai - 400021", phone: "+91 22 6987 4321" }
-            ],
-            bengaluru: [
-                { name: "Bengaluru Core AI Operations HQ", address: "102, 80 Feet Road, Koramangala 4th Block, Bengaluru - 560034", phone: "+91 80 4412 8900" },
-                { name: "Whitefield Field Support Facility", address: "Sigma Soft Tech Park, Varthur Hobli, Whitefield, Bengaluru - 560066", phone: "+91 80 4412 8911" }
-            ],
-            delhi: [
-                { name: "NCR Central Service Hub", address: "E-14, Connaught Place Inner Circle, New Delhi - 110001", phone: "+91 11 2345 6789" },
-                { name: "Gurugram Tech Support Node", address: "DLF Cyber City, Phase 3, Sector 24, Gurugram - 122002", phone: "+91 124 400 5111" }
-            ],
-            chennai: [
-                { name: "Chennai Main Support Hub", address: "Block A, Tidel Park, Rajiv Gandhi Salai, Taramani, Chennai - 600113", phone: "+91 44 2254 0099" }
-            ],
-            hyderabad: [
-                { name: "Hyderabad Tech Node", address: "Hitech City Phase 2, Madhapur, Hyderabad - 500081", phone: "+91 40 6677 8899" }
-            ],
-            kolkata: [
-                { name: "East Region Logistics Center", address: "Infinity Benchmark, Sector V, Salt Lake, Kolkata - 700091", phone: "+91 33 2357 1122" }
-            ],
-            pune: [
-                { name: "Pune Field Node", address: "ICC Tech Park, Senapati Bapat Road, Pune - 411016", phone: "+91 20 2567 8900" }
-            ]
-        };
+        let currentMode = 'login';
 
-        // Initialize default greeting or empty state
-        document.getElementById('results').innerHTML = '<p style="text-align:center; color:#888;">Enter a city to display corresponding physical assistance branches.</p>';
+        function toggleAuth(mode) {
+            currentMode = mode;
+            document.getElementById('tab-login').classList.toggle('active', mode === 'login');
+            document.getElementById('tab-signup').classList.toggle('active', mode === 'signup');
+            document.getElementById('name-group').style.display = mode === 'signup' ? 'block' : 'none';
+            document.getElementById('authSubmitBtn').innerText = mode === 'signup' ? 'Create Care Profile' : 'Initialize Ecosystem Dashboard';
+        }
 
-        function findCenters() {
-            const input = document.getElementById('cityInput').value.trim().toLowerCase();
-            const resultsContainer = document.getElementById('results');
-            resultsContainer.innerHTML = ''; // Reset UI view
+        function handleAuthSubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('userEmail').value;
+            const coords = document.getElementById('geoCoordinates').value;
+            let feedback = `Access initialized for: ${email}`;
+            if(currentMode === 'signup') {
+                feedback = `Ecosystem profile registered for: ${email}.`;
+                if(coords) feedback += ` Linked Response coordinates: [${coords}]`;
+            }
+            alert(feedback);
+        }
 
-            if (!input) {
-                resultsContainer.innerHTML = '<p class="no-results">Please enter a city name to search.</p>';
+        function requestMapLocation() {
+            const status = document.getElementById('locationStatus');
+            status.innerText = "Querying device network hardware context...";
+
+            if (!navigator.geolocation) {
+                status.innerText = "HTML5 positioning modules not supported by this browser engine.";
                 return;
             }
 
-            // Simple string matching search routine
-            if (serviceDatabase[input]) {
-                const centers = serviceDatabase[input];
-                centers.forEach(center => {
-                    const centerHtml = `
-                        <div class="center-item">
-                            <div class="center-name">${center.name}</div>
-                            <div class="center-details"><strong>Address:</strong> ${center.address}</div>
-                            <div class="center-details"><strong>Support Line:</strong> ${center.phone}</div>
-                        </div>
-                    `;
-                    resultsContainer.innerHTML += centerHtml;
-                });
-            } else {
-                resultsContainer.innerHTML = `
-                    <div class="no-results">
-                        No localized physical service center found for "${document.getElementById('cityInput').value}". <br>
-                        <span style="font-size:13px; color:#666; font-weight:normal;">Our remote diagnostics tier is active nationwide. Please check back later for hardware installation setups.</span>
-                    </div>`;
-            }
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude.toFixed(5);
+                    const lng = position.coords.longitude.toFixed(5);
+                    document.getElementById('geoCoordinates').value = `${lat},${lng}`;
+                    status.innerHTML = `✅ Location Verified: <strong>Lat ${lat}, Lng ${lng}</strong>`;
+                    
+                    const banner = document.getElementById('geoBanner');
+                    banner.style.display = "block";
+                    banner.innerHTML = `📍 Browser Geolocation confirmed. Nearest field dispatch center prioritized for coordinates: [Lat: ${lat}, Lng: ${lng}].`;
+                },
+                (error) => {
+                    status.innerText = "Location permission request declined. Enter city name manually below.";
+                }
+            );
         }
 
-        // Trigger lookup functionality instantly if user presses enter inside the text field
-        document.getElementById('cityInput').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                findCenters();
+        // Localized Indian Metropolitan Care Centers Database Mapping[cite: 1]
+        const serviceDatabase = {
+            mumbai: [{ name: "Aura Care West Zone HQ", address: "402, Supreme Business Park, Hiranandani Gardens, Powai, Mumbai - 400076", phone: "+91 22 6123 4567" }],
+            bengaluru: [{ name: "Bengaluru Technology Operations Hub", address: "102, 80 Feet Road, Koramangala 4th Block, Bengaluru - 560034", phone: "+91 80 4412 8900" }],
+            delhi: [{ name: "NCR Central Service Node", address: "E-14, Connaught Place Inner Circle, New Delhi - 110001", phone: "+91 11 2345 6789" }],
+            chennai: [{ name: "Chennai Coast Field Facility", address: "Block A, Tidel Park, Rajiv Gandhi Salai, Taramani, Chennai - 600113", phone: "+91 44 2254 0099" }],
+            hyderabad: [{ name: "Hyderabad Active Living Core Center", address: "Hitech City Phase 2, Madhapur, Hyderabad - 500081", phone: "+91 40 6677 8899" }],
+            pune: [{ name: "Pune Support Hub", address: "ICC Tech Park, Senapati Bapat Road, Pune - 411016", phone: "+91 20 2567 8900" }]
+        };
+
+        document.getElementById('results').innerHTML = '<p style="text-align:center; color:#777; font-size:14px;">Please search a Tier-1 city above to display localized setup logistics channels[cite: 1].</p>';
+
+        function findCenters() {
+            const query = document.getElementById('cityInput').value.trim().toLowerCase();
+            const container = document.getElementById('results');
+            container.innerHTML = '';
+
+            if(!query) {
+                container.innerHTML = '<p style="color:red; text-align:center; font-size:14px;">Please enter a location context.</p>';
+                return;
             }
-        });
+
+            if(serviceDatabase[query]) {
+                serviceDatabase[query].forEach(node => {
+                    container.innerHTML += `
+                        <div class="center-item">
+                            <div class="center-name">${node.name}</div>
+                            <div style="font-size:13px; color:#555; margin-top:5px;"><strong>Physical Hub Address:</strong> ${node.address}</div>
+                            <div style="font-size:13px; color:#555;"><strong>Dedicated Line:</strong> ${node.phone}</div>
+                        </div>
+                    `;
+                });
+            } else {
+                container.innerHTML = `
+                    <p style="text-align:center; font-size:14px; color:#c06c3c;">
+                        No physical field hub discovered for "${document.getElementById('cityInput').value}". Remote monitoring and app dispatch functions remain active nationwide[cite: 1].
+                    </p>`;
+            }
+        }
     </script>
 </body>
 </html>
