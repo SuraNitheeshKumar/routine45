@@ -1,398 +1,674 @@
 ```html
-<!-- 1. ADD THIS CSS INSIDE YOUR EXISTING <style> TAG -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Make Your Life Saral | Saral Protein Atta+</title>
 
-<style>
-  .purchase-btn {
-    width: 100%;
-    border: none;
-    border-radius: 9px;
-    padding: 12px;
-    margin-top: 12px;
-    cursor: pointer;
-    background: #0c6b39;
-    color: white;
-    font-weight: 800;
-    font-size: 15px;
-  }
-
-  .purchase-btn:hover {
-    background: #06245f;
-  }
-
-  .purchase-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 500;
-    background: rgba(0, 0, 0, 0.65);
-    padding: 25px;
-    overflow-y: auto;
-  }
-
-  .purchase-modal.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .purchase-box {
-    width: 100%;
-    max-width: 620px;
-    background: white;
-    border-radius: 18px;
-    padding: 28px;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22);
-    position: relative;
-  }
-
-  .purchase-box h2 {
-    color: #06245f;
-    margin-bottom: 8px;
-  }
-
-  .purchase-box p {
-    color: #667085;
-    margin-bottom: 18px;
-  }
-
-  .close-modal {
-    position: absolute;
-    top: 14px;
-    right: 18px;
-    border: none;
-    background: transparent;
-    font-size: 28px;
-    color: #06245f;
-    cursor: pointer;
-  }
-
-  .payment-options {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin: 18px 0;
-  }
-
-  .payment-option {
-    border: 2px solid #d7e6db;
-    border-radius: 10px;
-    padding: 14px 8px;
-    cursor: pointer;
-    background: #ffffff;
-    color: #06245f;
-    font-weight: 800;
-  }
-
-  .payment-option.active {
-    border-color: #0c6b39;
-    background: #edf8f0;
-    color: #0c6b39;
-  }
-
-  .payment-section {
-    display: none;
-    background: #f8fbf9;
-    border-radius: 12px;
-    padding: 18px;
-    margin-top: 10px;
-  }
-
-  .payment-section.active {
-    display: block;
-  }
-
-  .payment-section input,
-  .payment-section textarea,
-  .payment-section select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #d7dce4;
-    border-radius: 8px;
-    margin: 8px 0;
-    font-size: 14px;
-  }
-
-  .payment-section textarea {
-    min-height: 90px;
-    resize: vertical;
-  }
-
-  .upi-number-box {
-    padding: 16px;
-    text-align: center;
-    background: #fff8dd;
-    border: 1px dashed #d5a200;
-    border-radius: 10px;
-    color: #5c4800;
-    margin: 10px 0;
-  }
-
-  .upi-number-box strong {
-    display: block;
-    font-size: 24px;
-    color: #06245f;
-    margin-top: 4px;
-  }
-
-  .order-summary {
-    background: #edf8f0;
-    border-radius: 10px;
-    padding: 14px;
-    margin-bottom: 16px;
-  }
-
-  .place-order-btn {
-    width: 100%;
-    border: none;
-    border-radius: 9px;
-    padding: 13px;
-    cursor: pointer;
-    background: #06245f;
-    color: white;
-    font-size: 16px;
-    font-weight: 800;
-    margin-top: 15px;
-  }
-
-  .place-order-btn:hover {
-    background: #0c6b39;
-  }
-
-  @media (max-width: 520px) {
-    .payment-options {
-      grid-template-columns: 1fr;
+  <style>
+    :root {
+      --navy: #082b72;
+      --green: #11733d;
+      --light-green: #eaf7ee;
+      --yellow: #f7c948;
+      --cream: #fffaf0;
+      --text: #182232;
+      --muted: #5f6774;
+      --white: #ffffff;
     }
-  }
-</style>
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-<!-- 2. ADD THIS MODAL JUST BEFORE </body> -->
+    body {
+      background: #f7f9fc;
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-<div class="purchase-modal" id="purchaseModal">
-  <div class="purchase-box">
-    <button class="close-modal" onclick="closePurchaseModal()">×</button>
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 18px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
 
-    <h2>Complete Your Purchase</h2>
-    <p>Select a payment method to place your Saral order.</p>
+    .brand {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
 
-    <div class="order-summary">
-      <strong id="selectedProductName">Saral Product</strong><br>
-      <span id="selectedProductDetails">Choose a product to continue.</span>
+    .brand span {
+      color: var(--yellow);
+    }
+
+    /* Right-aligned menu with Login/Signup as the rightmost item */
+    nav {
+      margin-left: auto;
+    }
+
+    nav ul {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+      gap: 26px;
+      list-style: none;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--yellow);
+    }
+
+    .hero {
+      padding: 72px 24px 58px;
+      text-align: center;
+      background: linear-gradient(135deg, #effcf3 0%, #e5f0ff 55%, #fff4d6 100%);
+    }
+
+    .hero h1 {
+      color: var(--navy);
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.1;
+      max-width: 980px;
+      margin: 0 auto 22px;
+    }
+
+    .hero-banner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 20px 28px;
+      border-radius: 14px;
+      color: white;
+      background: linear-gradient(90deg, var(--green), #178a5a, var(--navy));
+      box-shadow: 0 10px 24px rgba(8, 43, 114, 0.18);
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .hero-banner strong {
+      color: var(--yellow);
+    }
+
+    .primary-btn {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 14px 26px;
+      border-radius: 9px;
+      background: var(--navy);
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .primary-btn:hover {
+      background: var(--green);
+      transform: translateY(-2px);
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 65px 28px;
+    }
+
+    .section-title {
+      color: var(--navy);
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 28px;
+      max-width: 800px;
+    }
+
+    .features,
+    .plans,
+    .career-grid,
+    .two-column {
+      display: grid;
+      gap: 22px;
+    }
+
+    .features {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .feature-card,
+    .plan-card,
+    .career-card,
+    .content-box {
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 8px 20px rgba(22, 37, 68, 0.08);
+    }
+
+    .feature-card {
+      padding: 24px;
+      border-top: 5px solid var(--green);
+    }
+
+    .feature-card h3 {
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .plans {
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    }
+
+    .plan-card {
+      padding: 30px 26px;
+      border: 2px solid transparent;
+      text-align: center;
+      transition: 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--green);
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: 15px;
+      right: -35px;
+      transform: rotate(38deg);
+      background: var(--yellow);
+      color: var(--navy);
+      padding: 5px 40px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .plan-card h3 {
+      color: var(--navy);
+      font-size: 23px;
+      margin-bottom: 6px;
+    }
+
+    .plan-price {
+      font-size: 34px;
+      color: var(--green);
+      font-weight: 800;
+      margin: 14px 0 4px;
+    }
+
+    .plan-price span {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .discount-chip {
+      display: inline-block;
+      background: var(--light-green);
+      color: var(--green);
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 30px;
+      margin: 10px 0 16px;
+    }
+
+    .gift-box {
+      background: var(--cream);
+      border: 1px dashed #d3a716;
+      border-radius: 10px;
+      padding: 12px;
+      margin: 16px 0;
+      color: #6c5300;
+      font-weight: 700;
+    }
+
+    .plan-card ul {
+      list-style: none;
+      text-align: left;
+      margin: 18px 0;
+    }
+
+    .plan-card li {
+      margin-bottom: 10px;
+      color: #394150;
+    }
+
+    .plan-card li::before {
+      content: "✓";
+      color: var(--green);
+      font-weight: 900;
+      margin-right: 9px;
+    }
+
+    .plan-btn {
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      padding: 13px;
+      border-radius: 9px;
+      background: var(--navy);
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .plan-btn:hover {
+      background: var(--green);
+    }
+
+    .two-column {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .content-box {
+      padding: 28px;
+    }
+
+    .content-box h3 {
+      color: var(--navy);
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .career-grid {
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      margin-top: 18px;
+    }
+
+    .career-card {
+      padding: 20px;
+      border-left: 5px solid var(--green);
+    }
+
+    .career-card h4 {
+      color: var(--navy);
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .career-meta {
+      color: var(--green);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .map-wrap {
+      background: #eef8f1;
+      border-radius: 15px;
+      padding: 20px;
+      border: 1px solid #cfe8d6;
+      margin-top: 16px;
+    }
+
+    .map-wrap svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .map-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 14px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--green);
+      display: inline-block;
+    }
+
+    .dot.secondary {
+      background: var(--yellow);
+    }
+
+    .auth-box {
+      background: linear-gradient(135deg, #0b2c73, #146b43);
+      color: white;
+    }
+
+    .auth-box h3 {
+      color: white;
+    }
+
+    .auth-box input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      margin: 7px 0;
+    }
+
+    .auth-box button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: var(--yellow);
+      color: var(--navy);
+      font-weight: 800;
+      margin-top: 10px;
+    }
+
+    footer {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      padding: 26px;
+    }
+
+    @media (max-width: 720px) {
+      header {
+        padding: 18px 22px;
+      }
+
+      nav ul {
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .section {
+        padding: 52px 20px;
+      }
+
+      .hero-banner {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">Make Your Life <span>Saral</span></div>
+
+    <nav>
+      <ul>
+        <li><a href="#login-signup">Login / Sign Up</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#careers">Careers</a></li>
+        <li><a href="#locations">Locations</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Everyday rotis. Everyday protein. Every day made Saral.</h1>
+
+    <div class="hero-banner">
+      <strong>Saral Protein Atta+</strong> gives your family 16g protein per 100g —
+      built into the rotis they already know, trust, and enjoy.
     </div>
 
-    <div class="payment-options">
-      <button class="payment-option active" onclick="selectPayment('cod', this)">
-        Cash on Delivery
-      </button>
+    <a class="primary-btn" href="#subscription">Explore Subscription Plans</a>
+  </section>
 
-      <button class="payment-option" onclick="selectPayment('card', this)">
-        Card
-      </button>
+  <section class="section" id="about">
+    <h2 class="section-title">About Saral Protein Atta+</h2>
+    <p class="section-subtitle">
+      We are making family nutrition easier by bringing high-protein atta into the everyday Indian kitchen.
+      No complicated meal plans. No premium supplement routine. Just more nutrition in every familiar roti.
+    </p>
 
-      <button class="payment-option" onclick="selectPayment('upi', this)">
-        UPI
-      </button>
-    </div>
-
-    <!-- Cash on Delivery -->
-    <div class="payment-section active" id="codSection">
-      <h3>Delivery Address</h3>
-      <input type="text" id="codName" placeholder="Full Name">
-      <input type="tel" id="codPhone" placeholder="Mobile Number">
-      <textarea id="codAddress" placeholder="House / Flat Number, Street, Area, City, State, Pincode"></textarea>
-      <select id="codCity">
-        <option value="">Select Delivery City</option>
-        <option>Bengaluru</option>
-        <option>Chennai</option>
-        <option>Hyderabad</option>
-        <option>Mysuru</option>
-        <option>Coimbatore</option>
-        <option>Vijayawada</option>
-      </select>
-    </div>
-
-    <!-- Card -->
-    <div class="payment-section" id="cardSection">
-      <h3>Card Payment</h3>
-      <input type="text" placeholder="Cardholder Name">
-      <input type="text" maxlength="19" placeholder="Card Number">
-      <input type="text" placeholder="MM / YY">
-      <input type="password" maxlength="3" placeholder="CVV">
-
-      <p style="font-size:12px; color:#667085; margin-top:8px;">
-        Demo interface only. Use Razorpay, Stripe, Cashfree, or another payment gateway for real card processing.
-      </p>
-    </div>
-
-    <!-- UPI -->
-    <div class="payment-section" id="upiSection">
-      <h3>UPI Payment</h3>
-
-      <div class="upi-number-box">
-        Pay to UPI Number
-        <strong>9392045827</strong>
+    <div class="features">
+      <div class="feature-card">
+        <h3>16g Protein / 100g</h3>
+        <p>High-protein nutrition designed for everyday household consumption.</p>
       </div>
 
-      <p>
-        Open any UPI app, pay to the number above, and enter the payment reference number below.
-      </p>
+      <div class="feature-card">
+        <h3>Made for Families</h3>
+        <p>Created for health-conscious mothers, working professionals, and senior citizens.</p>
+      </div>
 
-      <input type="text" id="upiReference" placeholder="Enter UPI Transaction / UTR Number">
+      <div class="feature-card">
+        <h3>Daily Staple</h3>
+        <p>No new consumption habit needed — simply use it in regular rotis and parathas.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Affordable Nutrition</h3>
+        <p>Subscription-led pricing makes consistent protein intake more accessible for homes.</p>
+      </div>
     </div>
+  </section>
 
-    <button class="place-order-btn" onclick="placeOrder()">
-      Place Order
-    </button>
-  </div>
-</div>
+  <section class="section" id="subscription">
+    <h2 class="section-title">Saral Subscription Plans</h2>
+    <p class="section-subtitle">
+      Choose a long-term nutrition plan for your family and unlock savings, doorstep delivery, and a one-time free Saral Protein Atta+ gift pack.
+    </p>
 
+    <div class="plans">
+      <div class="plan-card">
+        <h3>1-Year Plan</h3>
+        <div class="plan-price">₹199 <span>/ month</span></div>
+        <div class="discount-chip">10% Subscription Discount</div>
 
-<!-- 3. UPDATE YOUR PRODUCT CARD FUNCTION WITH THIS VERSION -->
-
-<script>
-  let selectedPaymentMethod = "cod";
-  let selectedProduct = {
-    name: "",
-    details: ""
-  };
-
-  function showCategory(category) {
-    document.querySelectorAll(".tab").forEach(tab => {
-      tab.classList.toggle("active", tab.dataset.category === category);
-    });
-
-    const productGrid = document.getElementById("productGrid");
-
-    productGrid.innerHTML = products[category].map(product => `
-      <article class="product-card">
-        <img src="${product.image}" alt="${product.name}">
-        <div class="product-content">
-          <h3>${product.name}</h3>
-          <div class="product-type">${product.type}</div>
-          <p>${product.text}</p>
-
-          <div class="packets">
-            ${product.packs.map(pack => `<span>${pack}</span>`).join("")}
-          </div>
-
-          <button
-            class="purchase-btn"
-            onclick="openPurchaseModal(
-              '${product.name}',
-              '${product.type} | Available sizes: ${product.packs.join(", ")}'
-            )"
-          >
-            Purchase Now
-          </button>
+        <div class="gift-box">
+          One-time welcome gift: 1 kg Saral Protein Atta+ pack
         </div>
-      </article>
-    `).join("");
 
-    document.getElementById("products").scrollIntoView({
-      behavior: "smooth"
-    });
-  }
+        <ul>
+          <li>12 monthly deliveries</li>
+          <li>10% saving versus regular purchase</li>
+          <li>Flexible delivery scheduling</li>
+          <li>Family nutrition reminders</li>
+        </ul>
 
+        <button class="plan-btn">Subscribe for 1 Year</button>
+      </div>
 
-  /* 4. ADD THESE PURCHASE FUNCTIONS INSIDE YOUR EXISTING <script> TAG */
+      <div class="plan-card">
+        <div class="popular-tag">BEST VALUE</div>
+        <h3>2-Year Plan</h3>
+        <div class="plan-price">₹149 <span>/ month</span></div>
+        <div class="discount-chip">12% Subscription Discount</div>
 
-  function openPurchaseModal(productName, productDetails) {
-    selectedProduct = {
-      name: productName,
-      details: productDetails
-    };
+        <div class="gift-box">
+          One-time welcome gift: 2 kg Saral Protein Atta+ pack
+        </div>
 
-    document.getElementById("selectedProductName").textContent = productName;
-    document.getElementById("selectedProductDetails").textContent = productDetails;
+        <ul>
+          <li>24 monthly deliveries</li>
+          <li>12% saving versus regular purchase</li>
+          <li>Priority support and delivery slots</li>
+          <li>Quarterly nutrition updates</li>
+        </ul>
 
-    document.getElementById("purchaseModal").classList.add("active");
-  }
+        <button class="plan-btn">Subscribe for 2 Years</button>
+      </div>
 
-  function closePurchaseModal() {
-    document.getElementById("purchaseModal").classList.remove("active");
-  }
+      <div class="plan-card">
+        <h3>5-Year Plan</h3>
+        <div class="plan-price">₹99 <span>/ month</span></div>
+        <div class="discount-chip">15% Subscription Discount</div>
 
-  function selectPayment(method, element) {
-    selectedPaymentMethod = method;
+        <div class="gift-box">
+          One-time welcome gift: 5 kg Saral Protein Atta+ pack
+        </div>
 
-    document.querySelectorAll(".payment-option").forEach(button => {
-      button.classList.remove("active");
-    });
+        <ul>
+          <li>60 monthly deliveries</li>
+          <li>15% saving versus regular purchase</li>
+          <li>Free priority doorstep delivery</li>
+          <li>Exclusive family loyalty benefits</li>
+        </ul>
 
-    document.querySelectorAll(".payment-section").forEach(section => {
-      section.classList.remove("active");
-    });
+        <button class="plan-btn">Subscribe for 5 Years</button>
+      </div>
+    </div>
+  </section>
 
-    element.classList.add("active");
+  <section class="section" id="careers">
+    <h2 class="section-title">Careers at Saral Protein Atta+</h2>
+    <p class="section-subtitle">
+      Join our growing South India team as we build a trusted, affordable protein nutrition brand for Indian homes.
+    </p>
 
-    if (method === "cod") {
-      document.getElementById("codSection").classList.add("active");
-    }
+    <div class="career-grid">
+      <div class="career-card">
+        <h4>Production Supervisor</h4>
+        <div class="career-meta">Manufacturing Centre · Bengaluru</div>
+        <p>Manage production schedules, hygiene standards, packaging quality, and shift-level efficiency.</p>
+      </div>
 
-    if (method === "card") {
-      document.getElementById("cardSection").classList.add("active");
-    }
+      <div class="career-card">
+        <h4>Quality Control Executive</h4>
+        <div class="career-meta">Manufacturing Centre · Hyderabad</div>
+        <p>Monitor raw-material quality, batch testing, food-safety processes, and product consistency.</p>
+      </div>
 
-    if (method === "upi") {
-      document.getElementById("upiSection").classList.add("active");
-    }
-  }
+      <div class="career-card">
+        <h4>Plant Maintenance Technician</h4>
+        <div class="career-meta">Manufacturing Centre · Chennai</div>
+        <p>Maintain milling, blending, packing, and utility equipment to support uninterrupted operations.</p>
+      </div>
 
-  function placeOrder() {
-    if (selectedPaymentMethod === "cod") {
-      const name = document.getElementById("codName").value.trim();
-      const phone = document.getElementById("codPhone").value.trim();
-      const address = document.getElementById("codAddress").value.trim();
-      const city = document.getElementById("codCity").value;
+      <div class="career-card">
+        <h4>Regional Marketing Executive</h4>
+        <div class="career-meta">Marketing Centre · Bengaluru / Mysuru</div>
+        <p>Drive in-store activations, digital campaigns, local influencer partnerships, and retail visibility.</p>
+      </div>
 
-      if (!name || !phone || !address || !city) {
-        alert("Please enter your full name, mobile number, delivery address and city for Cash on Delivery.");
-        return;
-      }
+      <div class="career-card">
+        <h4>Trade Marketing Officer</h4>
+        <div class="career-meta">Marketing Centre · Chennai / Coimbatore</div>
+        <p>Build kirana partnerships, execute merchandising, and improve trial-pack conversions.</p>
+      </div>
 
-      alert(
-        "Order placed successfully for " + selectedProduct.name +
-        ". Your Saral order will be delivered to " + city +
-        ". Payment mode: Cash on Delivery."
-      );
+      <div class="career-card">
+        <h4>Sales & Distribution Associate</h4>
+        <div class="career-meta">Marketing Centre · Hyderabad / Vijayawada</div>
+        <p>Expand general-trade coverage, support distributors, and improve pantry-repeat growth.</p>
+      </div>
+    </div>
+  </section>
 
-      closePurchaseModal();
-      return;
-    }
+  <section class="section" id="locations">
+    <div class="two-column">
+      <div class="content-box">
+        <h3>Fast-Selling South India Locations</h3>
+        <p>
+          Saral Protein Atta+ is prioritising high-adoption South Indian markets where health awareness,
+          modern trade, and family-staple consumption create strong repeat potential.
+        </p>
 
-    if (selectedPaymentMethod === "upi") {
-      const upiReference = document.getElementById("upiReference").value.trim();
+        <div class="map-wrap">
+          <!-- Illustrative South India map -->
+          <svg viewBox="0 0 500 520" role="img" aria-label="Illustrative map of South India with high-selling Saral Protein Atta+ locations">
+            <rect width="500" height="520" fill="#eef8f1"></rect>
 
-      if (!upiReference) {
-        alert("Please complete the UPI payment to 9392045827 and enter the UTR / transaction reference number.");
-        return;
-      }
+            <path d="M170 50
+                     C220 30, 300 60, 325 125
+                     C340 165, 318 205, 335 250
+                     C350 295, 330 350, 305 385
+                     C278 424, 260 462, 250 500
+                     L180 485
+                     C185 448, 202 414, 210 378
+                     C218 340, 190 305, 170 270
+                     C145 225, 135 180, 145 130
+                     C150 95, 150 70, 170 50 Z"
+                  fill="#d3ebd9"
+                  stroke="#11733d"
+                  stroke-width="4"></path>
 
-      alert(
-        "UPI payment reference received for " + selectedProduct.name +
-        ". Your order request has been placed."
-      );
+            <path d="M278 215 L330 245 L315 312 L270 300 Z"
+                  fill="#f7e6a8"
+                  stroke="#b18100"
+                  stroke-width="3"></path>
 
-      closePurchaseModal();
-      return;
-    }
+            <circle cx="212" cy="142" r="10" fill="#11733d"></circle>
+            <text x="228" y="148" font-size="18" font-weight="700" fill="#082b72">Bengaluru</text>
 
-    if (selectedPaymentMethod === "card") {
-      alert(
-        "Card payment selected for " + selectedProduct.name +
-        ". Connect this checkout to Razorpay, Cashfree or Stripe for live card payments."
-      );
+            <circle cx="250" cy="232" r="10" fill="#11733d"></circle>
+            <text x="266" y="238" font-size="18" font-weight="700" fill="#082b72">Chennai</text>
 
-      closePurchaseModal();
-    }
-  }
+            <circle cx="292" cy="158" r="10" fill="#11733d"></circle>
+            <text x="308" y="164" font-size="18" font-weight="700" fill="#082b72">Hyderabad</text>
 
-  window.onclick = function(event) {
-    const modal = document.getElementById("purchaseModal");
+            <circle cx="314" cy="275" r="9" fill="#f7c948"></circle>
+            <text x="330" y="281" font-size="17" font-weight="700" fill="#082b72">Vijayawada</text>
 
-    if (event.target === modal) {
-      closePurchaseModal();
-    }
-  };
-</script>
+            <circle cx="188" cy="195" r="9" fill="#f7c948"></circle>
+            <text x="72" y="202" font-size="17" font-weight="700" fill="#082b72">Mysuru</text>
+
+            <circle cx="202" cy="290" r="9" fill="#f7c948"></circle>
+            <text x="55" y="297" font-size="17" font-weight="700" fill="#082b72">Coimbatore</text>
+
+            <text x="150" y="40" font-size="22" font-weight="800" fill="#082b72">
+              South India Priority Market Map
+            </text>
+          </svg>
+        </div>
+
+        <div class="legend">
+          <div class="legend-item"><span class="dot"></span> High-selling city</div>
+          <div class="legend-item"><span class="dot secondary"></span> Growth market</div>
+        </div>
+
+        <p class="map-note">
+          High-selling focus: Bengaluru, Chennai, Hyderabad. Growth markets: Mysuru, Coimbatore, Vijayawada.
+        </p>
+      </div>
+
+      <div class="content-box auth-box" id="login-signup">
+        <h3>Login / Sign Up</h3>
+        <p>Create your Saral account to manage subscriptions, delivery schedules, and family packs.</p>
+
+        <form onsubmit="event.preventDefault(); alert('Welcome to Saral Protein Atta+!');">
+          <input type="text" placeholder="Full Name" required />
+          <input type="email" placeholder="Email Address" required />
+          <input type="password" placeholder="Password" required />
+          <button type="submit">Continue to Saral</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Make Your Life Saral · Saral Protein Atta+ · Everyday protein for Indian families.</p>
+  </footer>
+</body>
+</html>
 ```
